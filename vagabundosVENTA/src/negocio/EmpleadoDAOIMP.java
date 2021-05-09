@@ -28,7 +28,7 @@ String TABLA ="empleados";
 
                 ///sql.append("INSERT INTO `vagabundosws`.`empleados` (`int`, `nombre`, `codigo`, `rol`, `contraseña`) VALUES ('1', 'Carlos Alberto Soto Pacheco', '1450842', 'Admin', 'a231195d67aa0224b886ddd8fbdcfa92')");
                 sql.append("INSERT INTO empleados")
-                        .append("(nombre, codigo,rol,contraseña,) VALUES")
+                        .append("(nombre, codigo,rol,contraseña,puesto) VALUES")
                         .append("('").append(empleado.getNombre()).append("',")
                         .append("'").append(empleado.getCodigoEmpleado()).append("',")
                         .append("'").append(empleado.getRol()).append("',")

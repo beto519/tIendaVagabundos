@@ -155,6 +155,20 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+long codigo = Long.valueOf(JOptionPane.showInputDialog("Ingrese codigo de autorización"));
+
+        long codigoA = empleadoM.autorizacion(codigo);
+        if (codigoA > 0) {
+
+            RegistrarEmpleado registrar = new RegistrarEmpleado();
+            registrar.setVisible(true);
+            contenido.add(registrar);
+        } else {
+
+            JOptionPane.showMessageDialog(null, "codigo no valido",
+                    "Hey!", JOptionPane.ERROR_MESSAGE);
+        }
+
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
