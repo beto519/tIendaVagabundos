@@ -21,9 +21,9 @@ public class DBHelper {
     private Connection connection;
     private String error;
     private String controller = "com.mysql.jdbc.Driver";
-    private String database = "jdbc:mysql://localhost/vagabundosws"+parOp;
-    private String user = "root";
-    private String password = "6221098703";
+    private String database = "jdbc:mysql://bfbkuvpw7umrcsbqjoms-mysql.services.clever-cloud.com/bfbkuvpw7umrcsbqjoms"+parOp;
+    private String user = "u2lqklodizhwhirf";
+    private String password = "dztvKBJuvAS7tMKdErn6";
 
     public DBHelper() {
 
