@@ -32,7 +32,7 @@ String TABLA ="empleados";
                         .append("('").append(empleado.getNombre()).append("',")
                         .append("'").append(empleado.getCodigoEmpleado()).append("',")
                         .append("'").append(empleado.getRol()).append("',")
-                        .append("MD5('").append(empleado.getContraseña()).append("')")
+                        .append("MD5('").append(empleado.getContraseña()).append("'),")
                         .append("'").append(empleado.getPuesto()).append("')");
 
                 resultado = (boolean) bd.execute(sql.toString(), true);
