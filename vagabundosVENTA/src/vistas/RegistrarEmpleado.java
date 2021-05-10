@@ -45,6 +45,7 @@ public class RegistrarEmpleado extends javax.swing.JInternalFrame {
 
                 JOptionPane.showMessageDialog(null, "Registro exitoso", "Mensaje",
                         JOptionPane.DEFAULT_OPTION);
+                
             } else {
                 JOptionPane.showMessageDialog(null, "La contraseña no coincide", "Alerta",
                         JOptionPane.WARNING_MESSAGE);
