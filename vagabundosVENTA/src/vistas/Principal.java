@@ -227,19 +227,10 @@ long codigo = Long.valueOf(JOptionPane.showInputDialog("Ingrese codigo de autori
     }//GEN-LAST:event_jMenuItemEditarEmpleadoActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
- long codigo = Long.valueOf(JOptionPane.showInputDialog("Ingrese codigo de autorización"));
-
-        long codigoA = empleadoM.autorizacion(codigo);
-        if (codigoA > 0) {
 
             Inventario inventario = new Inventario();
             inventario.setVisible(true);
-            contenido.add(inventario);
-        } else {
-
-            JOptionPane.showMessageDialog(null, "codigo no valido",
-                    "Hey!", JOptionPane.ERROR_MESSAGE);
-        }
+        
 
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem3ActionPerformed

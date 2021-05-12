@@ -27,13 +27,11 @@ public class EditarProductos extends javax.swing.JInternalFrame {
         LlenarTabla();
     }
     
-   
-    
-    private void LlenarTabla(){
-        
+    private void LlenarTabla() {
+        txtID.setVisible(false);
         ProductoDAOIMP DAOProducto = new ProductoDAOIMP();
-        List<Producto>list = DAOProducto.buscarTodos();
-        String Info[][]= new String[list.size()][4];
+        List<Producto> list = DAOProducto.buscarTodos();
+        String Info[][] = new String[list.size()][4];
         DefaultTableModel model = new DefaultTableModel();
         
         model.addColumn("Id");
@@ -41,36 +39,35 @@ public class EditarProductos extends javax.swing.JInternalFrame {
         model.addColumn("Cantidad");
         model.addColumn("Precio");
         
-        
         for (int i = 0; i < list.size(); i++) {
-            Info[i][0] = list.get(i).getIdProducto()+"";
-           
-             model.addRow(
-                    new Object[]{list.get(i).getIdProducto(),list.get(i)
-                            .getNombreProducto(),list.get(i).getCantidadProducto(),list.get(i)
-                            .getPrecioProducto()}
+            Info[i][0] = list.get(i).getIdProducto() + "";
+            
+            model.addRow(
+                    new Object[]{list.get(i).getIdProducto(), list.get(i)
+                        .getNombreProducto(), list.get(i).getCantidadProducto(), list.get(i)
+                        .getPrecioProducto()}
             );
             
-          
-           TablaP.setModel(model);
+            TablaP.setModel(model);
         }
         
-
     }
     
     private void EditarProductos() {
         Producto producto = new Producto();
         ProductoDAOIMP DAOProducto = new ProductoDAOIMP();
         try {
-
+            
             String nombreProducto = txtNombreProducto.getText();
-            int cantidad = Integer.valueOf(txtCantidadProducto.getText());
-            double precio = Double.parseDouble(txtPrecioProducto.getText());
-
+            int cantidadProducto = Integer.valueOf(txtCantidadProducto.getText());
+            int idProducto = Integer.valueOf(txtID.getText());
+            double precioProducto = Double.parseDouble(txtPrecioProducto.getText());
+            
             if (!nombreProducto.equals("")) {
+                producto.setIdProducto(idProducto);
                 producto.setNombreProducto(nombreProducto);
-                producto.setCantidadProducto(cantidad);
-                producto.setPrecioProducto(precio);
+                producto.setCantidadProducto(cantidadProducto);
+                producto.setPrecioProducto(precioProducto);
                 DAOProducto.editar(producto);
                 JOptionPane.showMessageDialog(null, "Registro exitoso", "Mensaje",
                         JOptionPane.DEFAULT_OPTION);
@@ -78,12 +75,12 @@ public class EditarProductos extends javax.swing.JInternalFrame {
                 JOptionPane.showMessageDialog(null, "Ingrese todos los campos", "Alerta",
                         JOptionPane.WARNING_MESSAGE);
             }
-
+            
         } catch (Exception e) {
             e.printStackTrace();
-
+            
         }
-
+        
     }
 
     /**
@@ -107,6 +104,7 @@ public class EditarProductos extends javax.swing.JInternalFrame {
         btnGuardarEditarProductos = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         TablaP = new javax.swing.JTable();
+        txtID = new javax.swing.JTextField();
 
         setClosable(true);
 
@@ -155,7 +153,7 @@ public class EditarProductos extends javax.swing.JInternalFrame {
 
         TablaP.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"", null, null, null},
+                {null, null, null, null},
                 {null, null, null, null},
                 {null, null, null, null},
                 {null, null, null, null}
@@ -163,8 +161,26 @@ public class EditarProductos extends javax.swing.JInternalFrame {
             new String [] {
                 "ID", "Nombre", "Cantidad", "Precio"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        TablaP.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TablaPMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(TablaP);
+
+        txtID.setEditable(false);
+        txtID.setBackground(new java.awt.Color(0, 0, 0));
+        txtID.setEnabled(false);
+        txtID.setFocusable(false);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -177,9 +193,6 @@ public class EditarProductos extends javax.swing.JInternalFrame {
                         .addComponent(jScrollPane2)
                         .addContainerGap())
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(txtPrecioProducto, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
                             .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -188,7 +201,12 @@ public class EditarProductos extends javax.swing.JInternalFrame {
                             .addComponent(txtNombreProducto, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtCantidadProducto, javax.swing.GroupLayout.Alignment.LEADING))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(61, 61, 61))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnGuardarEditarProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -211,7 +229,9 @@ public class EditarProductos extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtCantidadProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel5)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel5)
+                    .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtPrecioProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32)
@@ -240,14 +260,27 @@ public class EditarProductos extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtNombreProductoActionPerformed
 
     private void btnGuardarEditarProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarEditarProductosActionPerformed
-
+        
         EditarProductos();
+        LlenarTabla();
         // TODO add your handling code here:
     }//GEN-LAST:event_btnGuardarEditarProductosActionPerformed
 
     private void btnGuardarEditarProductosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGuardarEditarProductosMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_btnGuardarEditarProductosMouseClicked
+
+    private void TablaPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaPMouseClicked
+        int id = (int) TablaP.getValueAt(TablaP.getSelectedRow(), 0);
+        String nombre = (String) TablaP.getValueAt(TablaP.getSelectedRow(), 1).toString();
+        String cantidad = (String) TablaP.getValueAt(TablaP.getSelectedRow(), 2).toString();
+        String precio = (String) TablaP.getValueAt(TablaP.getSelectedRow(), 3).toString();
+        txtID.setText(id + "");
+        txtNombreProducto.setText(nombre);
+        txtCantidadProducto.setText(cantidad);
+        txtPrecioProducto.setText(precio);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TablaPMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -261,6 +294,7 @@ public class EditarProductos extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField txtCantidadProducto;
+    private javax.swing.JTextField txtID;
     private javax.swing.JTextField txtNombreProducto;
     private javax.swing.JTextField txtPrecioProducto;
     // End of variables declaration//GEN-END:variables
