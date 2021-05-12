@@ -92,7 +92,7 @@ public class Principal extends javax.swing.JFrame {
         jMenuBar1.setMinimumSize(new java.awt.Dimension(0, 8));
 
         jMenu1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icono2/icons8_buy_30px_1.png"))); // NOI18N
+        jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icono2/Venta.png"))); // NOI18N
         jMenu1.setText("Venta");
         jMenu1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jMenuBar1.add(jMenu1);
