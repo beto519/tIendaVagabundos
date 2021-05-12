@@ -146,7 +146,7 @@ public class ProductoDAOIMP implements CRUD<Producto> {
 
         try {
             if (bd.connect()) {
-                String query = "SELECT * FROM " + TABLA+" WHERE nombreProducto LIKE "+nombre+"%";
+                String query = "SELECT * FROM " + TABLA+" WHERE nombreProducto LIKE '"+nombre+"%'";
                 ResultSet rs = (ResultSet) bd.execute(query, false);
                 while (rs.next()) {
                     Producto productos = new Producto();

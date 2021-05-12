@@ -88,8 +88,7 @@ public class Inventario extends javax.swing.JInternalFrame {
         txtBuscar = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtableInventario = new javax.swing.JTable();
-        btnGuardarEditarProductos = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        btnGuardarRegistrarEmpleado = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
@@ -132,28 +131,20 @@ public class Inventario extends javax.swing.JInternalFrame {
             jtableInventario.getColumnModel().getColumn(2).setResizable(false);
         }
 
-        btnGuardarEditarProductos.setBackground(new java.awt.Color(0, 51, 51));
-        btnGuardarEditarProductos.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        btnGuardarEditarProductos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/upd_norm.png"))); // NOI18N
-        btnGuardarEditarProductos.setBorder(null);
-        btnGuardarEditarProductos.setContentAreaFilled(false);
-        btnGuardarEditarProductos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnGuardarEditarProductos.setFocusPainted(false);
-        btnGuardarEditarProductos.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/upd_roll.png"))); // NOI18N
-        btnGuardarEditarProductos.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/upd_press.png"))); // NOI18N
-        btnGuardarEditarProductos.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnGuardarEditarProductosMouseClicked(evt);
-            }
-        });
-        btnGuardarEditarProductos.addActionListener(new java.awt.event.ActionListener() {
+        btnGuardarRegistrarEmpleado.setBackground(new java.awt.Color(0, 51, 51));
+        btnGuardarRegistrarEmpleado.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btnGuardarRegistrarEmpleado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/upd_norm.png"))); // NOI18N
+        btnGuardarRegistrarEmpleado.setBorder(null);
+        btnGuardarRegistrarEmpleado.setContentAreaFilled(false);
+        btnGuardarRegistrarEmpleado.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnGuardarRegistrarEmpleado.setFocusPainted(false);
+        btnGuardarRegistrarEmpleado.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/upd_roll.png"))); // NOI18N
+        btnGuardarRegistrarEmpleado.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/upd_press.png"))); // NOI18N
+        btnGuardarRegistrarEmpleado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGuardarEditarProductosActionPerformed(evt);
+                btnGuardarRegistrarEmpleadoActionPerformed(evt);
             }
         });
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondo.png"))); // NOI18N
-        jLabel1.setText("jLabel1");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -167,21 +158,17 @@ public class Inventario extends javax.swing.JInternalFrame {
                         .addGap(121, 121, 121)
                         .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnGuardarEditarProductos)))
+                        .addComponent(btnGuardarRegistrarEmpleado)))
                 .addContainerGap(62, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(42, 42, 42)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtBuscar)
-                    .addComponent(btnGuardarEditarProductos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(30, 30, 30)
+                .addGap(127, 127, 127)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnGuardarRegistrarEmpleado))
+                .addGap(24, 24, 24)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(67, Short.MAX_VALUE))
         );
@@ -202,27 +189,21 @@ public class Inventario extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnGuardarEditarProductosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGuardarEditarProductosMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnGuardarEditarProductosMouseClicked
-
-    private void btnGuardarEditarProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarEditarProductosActionPerformed
-        LlenarTabla();
-       
-
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnGuardarEditarProductosActionPerformed
-
     private void txtBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarActionPerformed
 
 
         // TODO add your handling code here:
     }//GEN-LAST:event_txtBuscarActionPerformed
 
+    private void btnGuardarRegistrarEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarRegistrarEmpleadoActionPerformed
+     LlenarTabla();
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnGuardarRegistrarEmpleadoActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnGuardarEditarProductos;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton btnGuardarRegistrarEmpleado;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jtableInventario;
