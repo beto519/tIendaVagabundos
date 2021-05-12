@@ -53,7 +53,7 @@
               </Border>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/iconos/icons8_paid_30px.png"/>
+              <Image iconType="3" name="/Icono2/icons8_buy_30px_1.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Venta"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -67,6 +67,9 @@
               <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                 <LineBorder/>
               </Border>
+            </Property>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/Icono2/icons8_shirt_30px.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Productos"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -99,6 +102,9 @@
                 <LineBorder/>
               </Border>
             </Property>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/Icono2/report.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Reportes"/>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
               <Color id="Cursor Por defecto"/>
@@ -115,6 +121,9 @@
                 <LineBorder/>
               </Border>
             </Property>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/Icono2/icons8_money_30px_1.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Cajero"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Dialog" size="18" style="1"/>
@@ -127,6 +136,9 @@
               <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                 <LineBorder/>
               </Border>
+            </Property>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/Icono2/icons8_user_30px.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Empleados"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -203,7 +215,7 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="114" max="-2" attributes="0"/>
                   <Component id="jLabel1" min="-2" pref="170" max="-2" attributes="0"/>
-                  <EmptySpace pref="143" max="32767" attributes="0"/>
+                  <EmptySpace pref="145" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>

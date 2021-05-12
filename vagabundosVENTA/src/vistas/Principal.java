@@ -86,18 +86,19 @@ public class Principal extends javax.swing.JFrame {
             .addGroup(contenidoLayout.createSequentialGroup()
                 .addGap(114, 114, 114)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(143, Short.MAX_VALUE))
+                .addContainerGap(145, Short.MAX_VALUE))
         );
 
         jMenuBar1.setMinimumSize(new java.awt.Dimension(0, 8));
 
         jMenu1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/icons8_paid_30px.png"))); // NOI18N
+        jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icono2/icons8_buy_30px_1.png"))); // NOI18N
         jMenu1.setText("Venta");
         jMenu1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jMenuBar1.add(jMenu1);
 
         jMenu2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icono2/icons8_shirt_30px.png"))); // NOI18N
         jMenu2.setText("Productos");
         jMenu2.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
 
@@ -120,17 +121,20 @@ public class Principal extends javax.swing.JFrame {
         jMenuBar1.add(jMenu2);
 
         jMenu8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jMenu8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icono2/report.png"))); // NOI18N
         jMenu8.setText("Reportes");
         jMenu8.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jMenu8.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jMenuBar1.add(jMenu8);
 
         jMenu3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icono2/icons8_money_30px_1.png"))); // NOI18N
         jMenu3.setText("Cajero");
         jMenu3.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jMenuBar1.add(jMenu3);
 
         jMenu9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jMenu9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icono2/icons8_user_30px.png"))); // NOI18N
         jMenu9.setText("Empleados");
         jMenu9.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
 
