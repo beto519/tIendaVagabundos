@@ -27,32 +27,35 @@ public class EditarProductos extends javax.swing.JInternalFrame {
         LlenarTabla();
     }
     
+   
+    
     private void LlenarTabla(){
         
-        
-        String titulos[] = {"ID","Nombre","Cantidad","Precio"};
-        String Informacion[][]= obtenerDatos();
-        
-      TablaP = new JTable(Informacion,titulos);
-
-      
-    }
-    
-    private String[][] obtenerDatos(){
         ProductoDAOIMP DAOProducto = new ProductoDAOIMP();
         List<Producto>list = DAOProducto.buscarTodos();
         String Info[][]= new String[list.size()][4];
+        DefaultTableModel model = new DefaultTableModel();
+        
+        model.addColumn("Id");
+        model.addColumn("Nombre");
+        model.addColumn("Cantidad");
+        model.addColumn("Precio");
         
         
         for (int i = 0; i < list.size(); i++) {
             Info[i][0] = list.get(i).getIdProducto()+"";
-            Info[i][1] = list.get(i).getNombreProducto()+"";
-            Info[i][2] = list.get(i).getCantidadProducto()+"";
-            Info[i][3] = list.get(i).getPrecioProducto()+"";
            
+             model.addRow(
+                    new Object[]{list.get(i).getIdProducto(),list.get(i)
+                            .getNombreProducto(),list.get(i).getCantidadProducto(),list.get(i)
+                            .getPrecioProducto()}
+            );
+            
+          
+           TablaP.setModel(model);
         }
         
-        return Info;
+
     }
     
     private void EditarProductos() {
