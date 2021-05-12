@@ -137,6 +137,36 @@ public class ProductoDAOIMP implements CRUD<Producto> {
     
     
     }
+
+    @Override
+    public List<Producto> buscarNombre(String nombre) {
+  
+
+       List<Producto> producto = new ArrayList();
+
+        try {
+            if (bd.connect()) {
+                String query = "SELECT * FROM " + TABLA+" WHERE nombreProducto LIKE "+nombre+"%";
+                ResultSet rs = (ResultSet) bd.execute(query, false);
+                while (rs.next()) {
+                    Producto productos = new Producto();
+                    productos.setIdProducto(rs.getInt("idProducto"));
+                    productos.setNombreProducto(rs.getString("nombreProducto"));
+                    productos.setCantidadProducto(rs.getInt("cantidadProducto"));
+                    productos.setPrecioProducto(rs.getDouble("precioProducto"));
+                    producto.add(productos);
+                }
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        } finally {
+            bd.disconnect();
+        }
+
+        return producto;
+    
+    
+    }
     
     
     

@@ -10,4 +10,5 @@ public interface CRUD<T> {
     public boolean eliminar(int id);
     public List<T> buscarTodos();
     public T buscarId(int id);
+     public List<T> buscarNombre(String nombre);
 }

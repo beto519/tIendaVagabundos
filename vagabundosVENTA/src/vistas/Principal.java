@@ -45,7 +45,11 @@ public class Principal extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
+        jSeparator2 = new javax.swing.JPopupMenu.Separator();
         jMenuItemEditarEmpleado = new javax.swing.JMenuItem();
+        jSeparator1 = new javax.swing.JPopupMenu.Separator();
+        jMenuItem3 = new javax.swing.JMenuItem();
+        jSeparator3 = new javax.swing.JPopupMenu.Separator();
         jMenu8 = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
         jMenu9 = new javax.swing.JMenu();
@@ -101,6 +105,7 @@ public class Principal extends javax.swing.JFrame {
             }
         });
         jMenu2.add(jMenuItem1);
+        jMenu2.add(jSeparator2);
 
         jMenuItemEditarEmpleado.setText("Editar Producto");
         jMenuItemEditarEmpleado.addActionListener(new java.awt.event.ActionListener() {
@@ -109,6 +114,11 @@ public class Principal extends javax.swing.JFrame {
             }
         });
         jMenu2.add(jMenuItemEditarEmpleado);
+        jMenu2.add(jSeparator1);
+
+        jMenuItem3.setText("Inventario");
+        jMenu2.add(jMenuItem3);
+        jMenu2.add(jSeparator3);
 
         jMenuBar1.add(jMenu2);
 
@@ -262,6 +272,10 @@ long codigo = Long.valueOf(JOptionPane.showInputDialog("Ingrese codigo de autori
     private javax.swing.JMenuBar jMenuBar3;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItemEditarEmpleado;
+    private javax.swing.JPopupMenu.Separator jSeparator1;
+    private javax.swing.JPopupMenu.Separator jSeparator2;
+    private javax.swing.JPopupMenu.Separator jSeparator3;
     // End of variables declaration//GEN-END:variables
 }
