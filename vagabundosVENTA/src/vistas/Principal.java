@@ -44,6 +44,7 @@ public class Principal extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItemEditarEmpleado = new javax.swing.JMenuItem();
         jMenu8 = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
         jMenu9 = new javax.swing.JMenu();
@@ -107,6 +108,14 @@ public class Principal extends javax.swing.JFrame {
             }
         });
         jMenu2.add(jMenuItem1);
+
+        jMenuItemEditarEmpleado.setText("Editar Producto");
+        jMenuItemEditarEmpleado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemEditarEmpleadoActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItemEditarEmpleado);
 
         jMenuBar1.add(jMenu2);
 
@@ -186,6 +195,24 @@ long codigo = Long.valueOf(JOptionPane.showInputDialog("Ingrese codigo de autori
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
+    private void jMenuItemEditarEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemEditarEmpleadoActionPerformed
+        // TODO add your handling code here:
+        
+        long codigo = Long.valueOf(JOptionPane.showInputDialog("Ingrese codigo de autorización"));
+
+        long codigoA = empleadoM.autorizacion(codigo);
+        if (codigoA > 0) {
+
+            EditarProductos Editar = new EditarProductos();
+            Editar.setVisible(true);
+            contenido.add(Editar);
+        } else {
+
+            JOptionPane.showMessageDialog(null, "codigo no valido",
+                    "Hey!", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jMenuItemEditarEmpleadoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -238,5 +265,6 @@ long codigo = Long.valueOf(JOptionPane.showInputDialog("Ingrese codigo de autori
     private javax.swing.JMenuBar jMenuBar3;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItemEditarEmpleado;
     // End of variables declaration//GEN-END:variables
 }
