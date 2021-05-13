@@ -18,6 +18,7 @@ public class Principal extends javax.swing.JFrame {
     /**
      * Creates new form Principal
      */
+    public static long codigoEmpleado;
     EmpleadoDAOIMP empleadoM = new EmpleadoDAOIMP();
 
     public Principal() {
@@ -43,6 +44,7 @@ public class Principal extends javax.swing.JFrame {
         contenido = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
+        jMenuItem4 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jSeparator2 = new javax.swing.JPopupMenu.Separator();
@@ -90,6 +92,16 @@ public class Principal extends javax.swing.JFrame {
         jMenu1.setText("Venta   ");
         jMenu1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jMenu1.setFont(new java.awt.Font("Lucida Calligraphy", 1, 18)); // NOI18N
+
+        jMenuItem4.setFont(new java.awt.Font("Lucida Calligraphy", 1, 12)); // NOI18N
+        jMenuItem4.setText("Registrar venta");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem4);
+
         jMenuBar1.add(jMenu1);
 
         jMenu2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -98,6 +110,7 @@ public class Principal extends javax.swing.JFrame {
         jMenu2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jMenu2.setFont(new java.awt.Font("Lucida Calligraphy", 1, 18)); // NOI18N
 
+        jMenuItem1.setFont(new java.awt.Font("Lucida Calligraphy", 1, 12)); // NOI18N
         jMenuItem1.setText("Registrar Productos");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -107,6 +120,7 @@ public class Principal extends javax.swing.JFrame {
         jMenu2.add(jMenuItem1);
         jMenu2.add(jSeparator2);
 
+        jMenuItemEditarEmpleado.setFont(new java.awt.Font("Lucida Calligraphy", 1, 12)); // NOI18N
         jMenuItemEditarEmpleado.setText("Editar Producto");
         jMenuItemEditarEmpleado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -116,6 +130,7 @@ public class Principal extends javax.swing.JFrame {
         jMenu2.add(jMenuItemEditarEmpleado);
         jMenu2.add(jSeparator1);
 
+        jMenuItem3.setFont(new java.awt.Font("Lucida Calligraphy", 1, 12)); // NOI18N
         jMenuItem3.setText("Inventario");
         jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -147,6 +162,7 @@ public class Principal extends javax.swing.JFrame {
         jMenu9.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jMenu9.setFont(new java.awt.Font("Lucida Calligraphy", 1, 18)); // NOI18N
 
+        jMenuItem2.setFont(new java.awt.Font("Lucida Calligraphy", 1, 12)); // NOI18N
         jMenuItem2.setText("Registrar Empleado");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -235,6 +251,13 @@ long codigo = Long.valueOf(JOptionPane.showInputDialog("Ingrese codigo de autori
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        RealizarVenta mostrar = new RealizarVenta();
+        mostrar.setVisible(true);
+        contenido.add(mostrar);
+        
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -287,6 +310,7 @@ long codigo = Long.valueOf(JOptionPane.showInputDialog("Ingrese codigo de autori
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItemEditarEmpleado;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator2;

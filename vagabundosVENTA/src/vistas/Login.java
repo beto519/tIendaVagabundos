@@ -159,6 +159,7 @@ public class Login extends javax.swing.JFrame {
                 System.out.println("idEMpleado: "+result.getIdEmpleado());
                 dispose();
                 Principal p = new Principal();
+                Principal.codigoEmpleado = result.getCodigoEmpleado();
                 p.setVisible(true);
                 
             }else{
