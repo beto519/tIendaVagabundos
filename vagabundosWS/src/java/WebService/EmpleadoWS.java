@@ -84,11 +84,16 @@ public class EmpleadoWS {
      * @param rol
      * @param puesto
      * @param contraseña
+     * @param id
      * @return 
      */
     @WebMethod(operationName = "editar")
-    public Boolean editar(@WebParam(name = "nombre") String nombre, @WebParam(name = "codigo") long codigo, @WebParam(name = "rol") String rol, @WebParam(name = "contraseña") String contraseña, @WebParam(name = "puesto") String puesto) {
+    public Boolean editar(@WebParam(name = "nombre") String nombre, @WebParam(name = "codigo") long codigo, @WebParam(name = "rol") String rol,
+            @WebParam(name = "contraseña") String contraseña, @WebParam(name = "puesto") String puesto,
+            @WebParam(name = "id") int id){
+        
         Empleado empleado = new Empleado();
+        empleado.setIdEmpleado(id);
         empleado.setCodigoEmpleado(codigo);
         empleado.setContraseña(contraseña);
         empleado.setNombre(nombre);
