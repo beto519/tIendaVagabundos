@@ -9,7 +9,6 @@ import entidades.Empleado;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import negocio.EmpleadoDAOIMP;
 
 /**
  *
@@ -25,67 +24,65 @@ public class EditarEmpleado extends javax.swing.JInternalFrame {
         LlenarTabla();
     }
 
-     private void LlenarTabla() {
+    private void LlenarTabla() {
         txtID.setVisible(false);
-        EmpleadoDAOIMP DAOEmpleado = new EmpleadoDAOIMP();
-        List<Empleado> list = DAOEmpleado.buscarTodos();
+        List<EmpleadoWS.Empleado> list = buscarTodos();
         DefaultTableModel model = new DefaultTableModel();
-        
+
         model.addColumn("Id");
         model.addColumn("Nombre");
         model.addColumn("Codigo");
         model.addColumn("Rol");
         model.addColumn("Puesto");
-        
+
         for (int i = 0; i < list.size(); i++) {
-            
+
             model.addRow(
                     new Object[]{list.get(i).getIdEmpleado(), list.get(i).getNombre(),
                         list.get(i).getCodigoEmpleado(), list.get(i).getRol(), list.get(i).getPuesto()
-                 }
+                    }
             );
-            
+
             tablaE.setModel(model);
         }
-        
+
     }
-     
-     private void EditarPmpleado() {
+
+    private void EditarPmpleado() {
         Empleado empleado = new Empleado();
-        EmpleadoDAOIMP DAOEmpleado = new EmpleadoDAOIMP();
         try {
-            
+
             String nombreEmpleado = txtNombre.getText();
             int codigoEmpleado = Integer.valueOf(txtCodigo.getText());
             int idEmpleado = Integer.valueOf(txtID.getText());
             String rolEmpleado = txtRol.getText();
             String puestoEmpleado = txtPuesto.getText();
-
+            String contraseña = "";
 
             if (!nombreEmpleado.equals("")) {
-                empleado.setIdEmpleado(idEmpleado);
-                empleado.setNombre(nombreEmpleado);
-                empleado.setCodigoEmpleado(codigoEmpleado);
-                empleado.setRol(rolEmpleado);
-                empleado.setPuesto(puestoEmpleado);
-                
-                DAOEmpleado.editar(empleado);
-                
-                JOptionPane.showMessageDialog(null, "Registro exitoso", "Mensaje",
-                        JOptionPane.DEFAULT_OPTION);
+
+                boolean result = editar(nombreEmpleado, codigoEmpleado, rolEmpleado, contraseña, puestoEmpleado, idEmpleado);
+
+                if (result) {
+                    JOptionPane.showMessageDialog(null, "Empleado editado correctamente", "Mensaje",
+                            JOptionPane.DEFAULT_OPTION);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Error al editar", "Alerta",
+                            JOptionPane.WARNING_MESSAGE);
+                }
+
             } else {
                 JOptionPane.showMessageDialog(null, "Ingrese todos los campos", "Alerta",
                         JOptionPane.WARNING_MESSAGE);
             }
-            
+
         } catch (Exception e) {
             e.printStackTrace();
-            
+
         }
-        
+
     }
-    
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -110,6 +107,8 @@ public class EditarEmpleado extends javax.swing.JInternalFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         tablaE = new javax.swing.JTable();
         btnGuardarEditarProductos = new javax.swing.JButton();
+
+        setClosable(true);
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
 
@@ -289,7 +288,7 @@ public class EditarEmpleado extends javax.swing.JInternalFrame {
 
     private void tablaEMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaEMouseClicked
         // TODO add your handling code here:
-         int id = (int) tablaE.getValueAt(tablaE.getSelectedRow(), 0);
+        int id = (int) tablaE.getValueAt(tablaE.getSelectedRow(), 0);
         String nombre = (String) tablaE.getValueAt(tablaE.getSelectedRow(), 1).toString();
         String codigo = (String) tablaE.getValueAt(tablaE.getSelectedRow(), 2).toString();
         String rol = (String) tablaE.getValueAt(tablaE.getSelectedRow(), 3).toString();
@@ -307,9 +306,12 @@ public class EditarEmpleado extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnGuardarEditarProductosMouseClicked
 
     private void btnGuardarEditarProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarEditarProductosActionPerformed
+        int selec = tablaE.getSelectedRow();
+        if (selec > -1) {
 
-        EditarPmpleado();
-        LlenarTabla();
+            EditarPmpleado();
+            LlenarTabla();
+        }
         // TODO add your handling code here:
     }//GEN-LAST:event_btnGuardarEditarProductosActionPerformed
 
@@ -331,4 +333,17 @@ public class EditarEmpleado extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtPuesto;
     private javax.swing.JTextField txtRol;
     // End of variables declaration//GEN-END:variables
+
+    private static java.util.List<EmpleadoWS.Empleado> buscarTodos() {
+        EmpleadoWS.EmpleadoWS_Service service = new EmpleadoWS.EmpleadoWS_Service();
+        EmpleadoWS.EmpleadoWS port = service.getEmpleadoWSPort();
+        return port.buscarTodos();
+    }
+
+    private static Boolean editar(java.lang.String nombre, long codigo, java.lang.String rol, java.lang.String contraseña, java.lang.String puesto, int id) {
+        EmpleadoWS.EmpleadoWS_Service service = new EmpleadoWS.EmpleadoWS_Service();
+        EmpleadoWS.EmpleadoWS port = service.getEmpleadoWSPort();
+        return port.editar(nombre, codigo, rol, contraseña, puesto, id);
+    }
+
 }

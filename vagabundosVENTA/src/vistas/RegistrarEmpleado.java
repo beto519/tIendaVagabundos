@@ -7,7 +7,6 @@ package vistas;
 
 import entidades.Empleado;
 import javax.swing.JOptionPane;
-import negocio.EmpleadoDAOIMP;
 
 /**
  *
@@ -25,7 +24,6 @@ public class RegistrarEmpleado extends javax.swing.JInternalFrame {
     private void RegistrarUser() {
 
         Empleado empleado = new Empleado();
-        EmpleadoDAOIMP DaoEmpleado = new EmpleadoDAOIMP();
         try {
             String nombre = txtNombre.getText();
 
@@ -36,12 +34,7 @@ public class RegistrarEmpleado extends javax.swing.JInternalFrame {
             String tipoUser = cmbxTipoUsuario.getSelectedItem().toString();
             if (contraseña.equals(confirmarContraseña)) {
 
-                empleado.setNombre(nombre);
-                empleado.setCodigoEmpleado(codigoEmpleado);
-                empleado.setContraseña(contraseña);
-                empleado.setRol(tipoUser);
-                empleado.setPuesto(puesto);
-                DaoEmpleado.agregar(empleado);
+                agregarEmpleado(nombre, codigoEmpleado, tipoUser, contraseña, puesto);
 
                 JOptionPane.showMessageDialog(null, "Registro exitoso", "Mensaje",
                         JOptionPane.DEFAULT_OPTION);
@@ -97,7 +90,7 @@ public class RegistrarEmpleado extends javax.swing.JInternalFrame {
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel2.setText("Usuario");
+        jLabel2.setText("Codigo de Empleado");
 
         txtUsuario.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
@@ -177,10 +170,10 @@ public class RegistrarEmpleado extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 427, Short.MAX_VALUE))
+                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 342, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -287,4 +280,10 @@ public class RegistrarEmpleado extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtPuesto;
     private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
+
+    private static boolean agregarEmpleado(java.lang.String nombre, java.lang.Long codigo, java.lang.String rol, java.lang.String contraseña, java.lang.String puesto) {
+        EmpleadoWS.EmpleadoWS_Service service = new EmpleadoWS.EmpleadoWS_Service();
+        EmpleadoWS.EmpleadoWS port = service.getEmpleadoWSPort();
+        return port.agregarEmpleado(nombre, codigo, rol, contraseña, puesto);
+    }
 }

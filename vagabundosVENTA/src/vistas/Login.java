@@ -5,10 +5,9 @@
  */
 package vistas;
 
-import entidades.Empleado;
+import EmpleadoWS.Empleado;
 import entidades.TextPrompt;
 import java.awt.event.KeyEvent;
-import negocio.EmpleadoDAOIMP;
 
 /**
  *
@@ -19,7 +18,6 @@ public class Login extends javax.swing.JFrame {
     /**
      * Creates new form Login
      */
-    EmpleadoDAOIMP empleadoM = new EmpleadoDAOIMP();
 
     public Login() {
         initComponents();
@@ -152,12 +150,14 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_txtContraseñaActionPerformed
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
+      
+        
         try {
 
             long codigoEmpleado = Long.valueOf(txtCodigo.getText());
             String contraseña = txtContraseña.getText();
 
-            Empleado result = empleadoM.login(codigoEmpleado, contraseña);
+            EmpleadoWS.Empleado result = login(codigoEmpleado, contraseña);
 
             if (result.getIdEmpleado() > 0) {
                 System.out.println("inicio de sesion correcto");
@@ -193,7 +193,7 @@ public class Login extends javax.swing.JFrame {
                 long codigoEmpleado = Long.valueOf(txtCodigo.getText());
                 String contraseña = txtContraseña.getText();
 
-                Empleado result = empleadoM.login(codigoEmpleado, contraseña);
+                Empleado result = login(codigoEmpleado, contraseña);
 
                 if (result.getIdEmpleado() > 0) {
                     System.out.println("inicio de sesion correcto");
@@ -266,4 +266,13 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JTextField txtCodigo;
     private javax.swing.JPasswordField txtContraseña;
     // End of variables declaration//GEN-END:variables
+
+    private static EmpleadoWS.Empleado login(long codigoEmpleado, java.lang.String contraseña) {
+        EmpleadoWS.EmpleadoWS_Service service = new EmpleadoWS.EmpleadoWS_Service();
+        EmpleadoWS.EmpleadoWS port = service.getEmpleadoWSPort();
+        return port.login(codigoEmpleado, contraseña);
+    }
+
+    
+    
 }

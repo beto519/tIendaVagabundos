@@ -8,7 +8,6 @@ package vistas;
 import entidades.Producto;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
-import negocio.ProductoDAOIMP;
 
 /**
  *
@@ -26,48 +25,47 @@ public class Inventario extends javax.swing.JInternalFrame {
 
     private void LlenarTabla() {
 
-        ProductoDAOIMP DAOProducto = new ProductoDAOIMP();
 
-        if (txtBuscar.getText().equals("")) {
-            List<Producto> list = DAOProducto.buscarTodos();
-            String Info[][] = new String[list.size()][3];
-            DefaultTableModel model = new DefaultTableModel();
-
-            model.addColumn("Nombre");
-            model.addColumn("Cantidad");
-            model.addColumn("Precio");
-
-            for (int i = 0; i < list.size(); i++) {
-
-                model.addRow(
-                        new Object[]{list.get(i)
-                                    .getNombreProducto(), list.get(i).getCantidadProducto(), list.get(i)
-                            .getPrecioProducto()}
-                );
-
-                jtableInventario.setModel(model);
-            }
-        } else if(!txtBuscar.equals("")) {
-           String nombreProducto = txtBuscar.getText().toString()+"";
-           List<Producto> list = DAOProducto.buscarNombre(nombreProducto);
-            String Info[][] = new String[list.size()][3];
-            DefaultTableModel model = new DefaultTableModel();
-
-            model.addColumn("Nombre");
-            model.addColumn("Cantidad");
-            model.addColumn("Precio");
-
-            for (int i = 0; i < list.size(); i++) {
-
-                model.addRow(
-                        new Object[]{list.get(i)
-                                    .getNombreProducto(), list.get(i).getCantidadProducto(), list.get(i)
-                            .getPrecioProducto()}
-                );
-
-                jtableInventario.setModel(model);
-            }
-        }
+//        if (txtBuscar.getText().equals("")) {
+//            List<Producto> list = DAOProducto.buscarTodos();
+//            String Info[][] = new String[list.size()][3];
+//            DefaultTableModel model = new DefaultTableModel();
+//
+//            model.addColumn("Nombre");
+//            model.addColumn("Cantidad");
+//            model.addColumn("Precio");
+//
+//            for (int i = 0; i < list.size(); i++) {
+//
+//                model.addRow(
+//                        new Object[]{list.get(i)
+//                                    .getNombreProducto(), list.get(i).getCantidadProducto(), list.get(i)
+//                            .getPrecioProducto()}
+//                );
+//
+//                jtableInventario.setModel(model);
+//            }
+//        } else if(!txtBuscar.equals("")) {
+//           String nombreProducto = txtBuscar.getText().toString()+"";
+//           List<Producto> list = DAOProducto.buscarNombre(nombreProducto);
+//            String Info[][] = new String[list.size()][3];
+//            DefaultTableModel model = new DefaultTableModel();
+//
+//            model.addColumn("Nombre");
+//            model.addColumn("Cantidad");
+//            model.addColumn("Precio");
+//
+//            for (int i = 0; i < list.size(); i++) {
+//
+//                model.addRow(
+//                        new Object[]{list.get(i)
+//                                    .getNombreProducto(), list.get(i).getCantidadProducto(), list.get(i)
+//                            .getPrecioProducto()}
+//                );
+//
+//                jtableInventario.setModel(model);
+//            }
+//        }
 
     }
 

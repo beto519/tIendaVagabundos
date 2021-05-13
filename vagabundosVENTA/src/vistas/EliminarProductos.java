@@ -9,7 +9,6 @@ import entidades.Producto;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import negocio.ProductoDAOIMP;
 
 /**
  *
@@ -27,63 +26,63 @@ public class EliminarProductos extends javax.swing.JInternalFrame {
 
 
     private void LlenarTabla() {
-        txtID.setVisible(false);
-
-        ProductoDAOIMP DAOProducto = new ProductoDAOIMP();
-
-        if (txtBuscar.getText().equals("")) {
-            List<Producto> list = DAOProducto.buscarTodos();
-            String Info[][] = new String[list.size()][4];
-            DefaultTableModel model = new DefaultTableModel();
-            model.addColumn("ID");
-            model.addColumn("Nombre");
-            model.addColumn("Cantidad");
-            model.addColumn("Precio");
-
-            for (int i = 0; i < list.size(); i++) {
-
-                model.addRow(
-                        new Object[]{list.get(i)
-                                    .getIdProducto(),list.get(i)
-                                    .getNombreProducto(), list.get(i).getCantidadProducto(), list.get(i)
-                            .getPrecioProducto()}
-                );
-
-                jtableProductos.setModel(model);
-            }
-        } else if (!txtBuscar.equals("")) {
-            String nombreProducto = txtBuscar.getText().toString() + "";
-            List<Producto> list = DAOProducto.buscarNombre(nombreProducto);
-            String Info[][] = new String[list.size()][4];
-            DefaultTableModel model = new DefaultTableModel();
-            model.addColumn("ID");
-            model.addColumn("Nombre");
-            model.addColumn("Cantidad");
-            model.addColumn("Precio");
-
-            for (int i = 0; i < list.size(); i++) {
-
-                model.addRow(
-                        new Object[]{list.get(i)
-                                    .getIdProducto(),list.get(i)
-                                    .getNombreProducto(), list.get(i).getCantidadProducto(), list.get(i)
-                            .getPrecioProducto()}
-                );
-
-                jtableProductos.setModel(model);
-            }
-        }
+//        txtID.setVisible(false);
+//
+//        ProductoDAOIMP DAOProducto = new ProductoDAOIMP();
+//
+//        if (txtBuscar.getText().equals("")) {
+//            List<Producto> list = DAOProducto.buscarTodos();
+//            String Info[][] = new String[list.size()][4];
+//            DefaultTableModel model = new DefaultTableModel();
+//            model.addColumn("ID");
+//            model.addColumn("Nombre");
+//            model.addColumn("Cantidad");
+//            model.addColumn("Precio");
+//
+//            for (int i = 0; i < list.size(); i++) {
+//
+//                model.addRow(
+//                        new Object[]{list.get(i)
+//                                    .getIdProducto(),list.get(i)
+//                                    .getNombreProducto(), list.get(i).getCantidadProducto(), list.get(i)
+//                            .getPrecioProducto()}
+//                );
+//
+//                jtableProductos.setModel(model);
+//            }
+//        } else if (!txtBuscar.equals("")) {
+//            String nombreProducto = txtBuscar.getText().toString() + "";
+//            List<Producto> list = DAOProducto.buscarNombre(nombreProducto);
+//            String Info[][] = new String[list.size()][4];
+//            DefaultTableModel model = new DefaultTableModel();
+//            model.addColumn("ID");
+//            model.addColumn("Nombre");
+//            model.addColumn("Cantidad");
+//            model.addColumn("Precio");
+//
+//            for (int i = 0; i < list.size(); i++) {
+//
+//                model.addRow(
+//                        new Object[]{list.get(i)
+//                                    .getIdProducto(),list.get(i)
+//                                    .getNombreProducto(), list.get(i).getCantidadProducto(), list.get(i)
+//                            .getPrecioProducto()}
+//                );
+//
+//                jtableProductos.setModel(model);
+//            }
+//        }
 
     }
 
     private void EliminarProductos() {
- int idProducto = Integer.valueOf(txtID.getText());
-        ProductoDAOIMP DAOProducto = new ProductoDAOIMP();
-        
-        DAOProducto.eliminar(idProducto);
-
-  JOptionPane.showMessageDialog(null, "Eliminacion exitosa", "Mensaje",
-                        JOptionPane.DEFAULT_OPTION);
+// int idProducto = Integer.valueOf(txtID.getText());
+//        ProductoDAOIMP DAOProducto = new ProductoDAOIMP();
+//        
+//        DAOProducto.eliminar(idProducto);
+//
+//  JOptionPane.showMessageDialog(null, "Eliminacion exitosa", "Mensaje",
+//                        JOptionPane.DEFAULT_OPTION);
 
     }
 

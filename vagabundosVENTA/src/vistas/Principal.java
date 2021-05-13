@@ -7,7 +7,6 @@ package vistas;
 
 import entidades.ImagenFondo;
 import javax.swing.JOptionPane;
-import negocio.EmpleadoDAOIMP;
 
 /**
  *
@@ -19,7 +18,6 @@ public class Principal extends javax.swing.JFrame {
      * Creates new form Principal
      */
     public static long codigoEmpleado;
-    EmpleadoDAOIMP empleadoM = new EmpleadoDAOIMP();
 
     public Principal() {
         initComponents();
@@ -59,6 +57,7 @@ public class Principal extends javax.swing.JFrame {
         jMenu9 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
         jSeparator5 = new javax.swing.JPopupMenu.Separator();
+        jMenuItem6 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
 
         jMenu4.setText("File");
@@ -186,6 +185,15 @@ public class Principal extends javax.swing.JFrame {
         jMenu9.add(jMenuItem2);
         jMenu9.add(jSeparator5);
 
+        jMenuItem6.setFont(new java.awt.Font("Lucida Calligraphy", 1, 12)); // NOI18N
+        jMenuItem6.setText("Editar Empleado");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
+        jMenu9.add(jMenuItem6);
+
         jMenuItem3.setFont(new java.awt.Font("Lucida Calligraphy", 1, 12)); // NOI18N
         jMenuItem3.setText("Cerrar Sesion");
         jMenuItem3.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -220,63 +228,79 @@ public class Principal extends javax.swing.JFrame {
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
 
-        long codigo = Long.valueOf(JOptionPane.showInputDialog("Ingrese codigo de autorización"));
+        try {
 
-        long codigoA = empleadoM.autorizacion(codigo);
-        if (codigoA > 0) {
+            long codigo = Long.valueOf(JOptionPane.showInputDialog("Ingrese codigo de autorización"));
 
-            RegistrarProductos registrar = new RegistrarProductos();
-            registrar.setVisible(true);
-            contenido.add(registrar);
-        } else {
+            long codigoA = autorizacion(codigo);
+            if (codigoA > 0) {
 
-            JOptionPane.showMessageDialog(null, "codigo no valido",
-                    "Hey!", JOptionPane.ERROR_MESSAGE);
+                RegistrarProductos registrar = new RegistrarProductos();
+                registrar.setVisible(true);
+                contenido.add(registrar);
+            } else {
+
+                JOptionPane.showMessageDialog(null, "codigo no valido",
+                        "Hey!", JOptionPane.ERROR_MESSAGE);
+            }
+
+        } catch (Exception e) {
         }
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        long codigo = Long.valueOf(JOptionPane.showInputDialog("Ingrese codigo de autorización"));
 
-        long codigoA = empleadoM.autorizacion(codigo);
-        if (codigoA > 0) {
+        try {
 
-            RegistrarEmpleado registrar = new RegistrarEmpleado();
-            registrar.setVisible(true);
-            contenido.add(registrar);
-        } else {
+            long codigo = Long.valueOf(JOptionPane.showInputDialog("Ingrese codigo de autorización"));
 
-            JOptionPane.showMessageDialog(null, "codigo no valido",
-                    "Hey!", JOptionPane.ERROR_MESSAGE);
+            long codigoA = autorizacion(codigo);
+            if (codigoA > 0) {
+
+                RegistrarEmpleado registrar = new RegistrarEmpleado();
+                registrar.setVisible(true);
+                contenido.add(registrar);
+            } else {
+
+                JOptionPane.showMessageDialog(null, "codigo no valido",
+                        "Hey!", JOptionPane.ERROR_MESSAGE);
+            }
+
+        } catch (Exception e) {
         }
-
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItemEditarEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemEditarEmpleadoActionPerformed
-        // TODO add your handling code here:
+        try {
 
-        long codigo = Long.valueOf(JOptionPane.showInputDialog("Ingrese codigo de autorización"));
+            long codigo = Long.valueOf(JOptionPane.showInputDialog("Ingrese codigo de autorización"));
 
-        long codigoA = empleadoM.autorizacion(codigo);
-        if (codigoA > 0) {
+            long codigoA = autorizacion(codigo);
+            if (codigoA > 0) {
 
-            EditarProductos Editar = new EditarProductos();
-            Editar.setVisible(true);
-            contenido.add(Editar);
-        } else {
+                EditarProductos Editar = new EditarProductos();
+                Editar.setVisible(true);
+                contenido.add(Editar);
+            } else {
 
-            JOptionPane.showMessageDialog(null, "codigo no valido",
-                    "Hey!", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "codigo no valido",
+                        "Hey!", JOptionPane.ERROR_MESSAGE);
+            }
+
+        } catch (Exception e) {
         }
     }//GEN-LAST:event_jMenuItemEditarEmpleadoActionPerformed
 
     private void btnInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInventarioActionPerformed
+        try {
 
-        Inventario inventario = new Inventario();
-        inventario.setVisible(true);
-        contenido.add(inventario);
+            Inventario inventario = new Inventario();
+            inventario.setVisible(true);
+            contenido.add(inventario);
 
+        } catch (Exception e) {
+        }
         // TODO add your handling code here:
     }//GEN-LAST:event_btnInventarioActionPerformed
 
@@ -288,18 +312,23 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void btnEliminarProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarProductosActionPerformed
-        long codigo = Long.valueOf(JOptionPane.showInputDialog("Ingrese codigo de autorización"));
+        try {
 
-        long codigoA = empleadoM.autorizacion(codigo);
-        if (codigoA > 0) {
+            long codigo = Long.valueOf(JOptionPane.showInputDialog("Ingrese codigo de autorización"));
 
-            EliminarProductos eliminar = new EliminarProductos();
-            eliminar.setVisible(true);
-            contenido.add(eliminar);
-        } else {
+            long codigoA = autorizacion(codigo);
+            if (codigoA > 0) {
 
-            JOptionPane.showMessageDialog(null, "codigo no valido",
-                    "Hey!", JOptionPane.ERROR_MESSAGE);
+                EliminarProductos editar = new EliminarProductos();
+                editar.setVisible(true);
+                contenido.add(editar);
+            } else {
+
+                JOptionPane.showMessageDialog(null, "codigo no valido",
+                        "Hey!", JOptionPane.ERROR_MESSAGE);
+            }
+
+        } catch (Exception e) {
         }
 
         // TODO add your handling code here:
@@ -319,6 +348,27 @@ public class Principal extends javax.swing.JFrame {
         dispose();
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem3MouseClicked
+
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+        try {
+
+            long codigo = Long.valueOf(JOptionPane.showInputDialog("Ingrese codigo de autorización"));
+
+            long codigoA = autorizacion(codigo);
+            if (codigoA > 0) {
+
+                EditarEmpleado editar = new EditarEmpleado();
+                editar.setVisible(true);
+                contenido.add(editar);
+            } else {
+
+                JOptionPane.showMessageDialog(null, "codigo no valido",
+                        "Hey!", JOptionPane.ERROR_MESSAGE);
+            }
+
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -375,6 +425,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItemEditarEmpleado;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator2;
@@ -382,4 +433,10 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JPopupMenu.Separator jSeparator4;
     private javax.swing.JPopupMenu.Separator jSeparator5;
     // End of variables declaration//GEN-END:variables
+
+    private static Long autorizacion(long codigo) {
+        EmpleadoWS.EmpleadoWS_Service service = new EmpleadoWS.EmpleadoWS_Service();
+        EmpleadoWS.EmpleadoWS port = service.getEmpleadoWSPort();
+        return port.autorizacion(codigo);
+    }
 }

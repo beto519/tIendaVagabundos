@@ -15,7 +15,6 @@ import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
-import negocio.ProductoDAOIMP;
 
 /**
  *
@@ -23,7 +22,6 @@ import negocio.ProductoDAOIMP;
  */
 public class RealizarVenta extends javax.swing.JInternalFrame implements Runnable {
 
-    ProductoDAOIMP productoM = new ProductoDAOIMP();
     List<Producto> productos = new ArrayList();
 
     String hora, minutos, segundos;
@@ -254,19 +252,19 @@ public class RealizarVenta extends javax.swing.JInternalFrame implements Runnabl
 
     private void txtCodigoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoKeyPressed
 
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            String codigo = txtCodigo.getText();
-            Producto p = productoM.buscarCodigo(codigo);
-            if (p.getIdProducto() > 0) {
-
-                productos.add(p);
-                llenarTabla();
-
-            } else {
-                JOptionPane.showMessageDialog(null, "No se encontro el producto", "Error", JOptionPane.ERROR_MESSAGE);
-            }
-
-        }
+//        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+//            String codigo = txtCodigo.getText();
+//            Producto p = productoM.buscarCodigo(codigo);
+//            if (p.getIdProducto() > 0) {
+//
+//                productos.add(p);
+//                llenarTabla();
+//
+//            } else {
+//                JOptionPane.showMessageDialog(null, "No se encontro el producto", "Error", JOptionPane.ERROR_MESSAGE);
+//            }
+//
+//        }
     }//GEN-LAST:event_txtCodigoKeyPressed
 
 

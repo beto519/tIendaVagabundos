@@ -6,12 +6,9 @@
 package vistas;
 
 import entidades.Producto;
-import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-import negocio.ProductoDAOIMP;
 
 /**
  *
@@ -24,62 +21,61 @@ public class EditarProductos extends javax.swing.JInternalFrame {
      */
     public EditarProductos() {
         initComponents();
-        LlenarTabla();
+       // LlenarTabla();
     }
     
-    private void LlenarTabla() {
-        txtID.setVisible(false);
-        ProductoDAOIMP DAOProducto = new ProductoDAOIMP();
-        List<Producto> list = DAOProducto.buscarTodos();
-        String Info[][] = new String[list.size()][4];
-        DefaultTableModel model = new DefaultTableModel();
-        
-        model.addColumn("Id");
-        model.addColumn("Nombre");
-        model.addColumn("Cantidad");
-        model.addColumn("Precio");
-        
-        for (int i = 0; i < list.size(); i++) {
-            Info[i][0] = list.get(i).getIdProducto() + "";
-            
-            model.addRow(
-                    new Object[]{list.get(i).getIdProducto(), list.get(i)
-                        .getNombreProducto(), list.get(i).getCantidadProducto(), list.get(i)
-                        .getPrecioProducto()}
-            );
-            
-            TablaP.setModel(model);
-        }
-        
-    }
+//    private void LlenarTabla() {
+//        txtID.setVisible(false);
+//        List<Producto> list = DAOProducto.buscarTodos();
+//        String Info[][] = new String[list.size()][4];
+//        DefaultTableModel model = new DefaultTableModel();
+//        
+//        model.addColumn("Id");
+//        model.addColumn("Nombre");
+//        model.addColumn("Cantidad");
+//        model.addColumn("Precio");
+//        
+//        for (int i = 0; i < list.size(); i++) {
+//            Info[i][0] = list.get(i).getIdProducto() + "";
+//            
+//            model.addRow(
+//                    new Object[]{list.get(i).getIdProducto(), list.get(i)
+//                        .getNombreProducto(), list.get(i).getCantidadProducto(), list.get(i)
+//                        .getPrecioProducto()}
+//            );
+//            
+//            TablaP.setModel(model);
+//        }
+//        
+//    }
     
     private void EditarProductos() {
-        Producto producto = new Producto();
-        ProductoDAOIMP DAOProducto = new ProductoDAOIMP();
-        try {
-            
-            String nombreProducto = txtNombreProducto.getText();
-            int cantidadProducto = Integer.valueOf(txtCantidadProducto.getText());
-            int idProducto = Integer.valueOf(txtID.getText());
-            double precioProducto = Double.parseDouble(txtPrecioProducto.getText());
-            
-            if (!nombreProducto.equals("")) {
-                producto.setIdProducto(idProducto);
-                producto.setNombreProducto(nombreProducto);
-                producto.setCantidadProducto(cantidadProducto);
-                producto.setPrecioProducto(precioProducto);
-                DAOProducto.editar(producto);
-                JOptionPane.showMessageDialog(null, "Registro exitoso", "Mensaje",
-                        JOptionPane.DEFAULT_OPTION);
-            } else {
-                JOptionPane.showMessageDialog(null, "Ingrese todos los campos", "Alerta",
-                        JOptionPane.WARNING_MESSAGE);
-            }
-            
-        } catch (Exception e) {
-            e.printStackTrace();
-            
-        }
+//        Producto producto = new Producto();
+//        ProductoDAOIMP DAOProducto = new ProductoDAOIMP();
+//        try {
+//            
+//            String nombreProducto = txtNombreProducto.getText();
+//            int cantidadProducto = Integer.valueOf(txtCantidadProducto.getText());
+//            int idProducto = Integer.valueOf(txtID.getText());
+//            double precioProducto = Double.parseDouble(txtPrecioProducto.getText());
+//            
+//            if (!nombreProducto.equals("")) {
+//                producto.setIdProducto(idProducto);
+//                producto.setNombreProducto(nombreProducto);
+//                producto.setCantidadProducto(cantidadProducto);
+//                producto.setPrecioProducto(precioProducto);
+//                DAOProducto.editar(producto);
+//                JOptionPane.showMessageDialog(null, "Registro exitoso", "Mensaje",
+//                        JOptionPane.DEFAULT_OPTION);
+//            } else {
+//                JOptionPane.showMessageDialog(null, "Ingrese todos los campos", "Alerta",
+//                        JOptionPane.WARNING_MESSAGE);
+//            }
+//            
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            
+//        }
         
     }
 
@@ -262,7 +258,7 @@ public class EditarProductos extends javax.swing.JInternalFrame {
     private void btnGuardarEditarProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarEditarProductosActionPerformed
         
         EditarProductos();
-        LlenarTabla();
+       // LlenarTabla();
         // TODO add your handling code here:
     }//GEN-LAST:event_btnGuardarEditarProductosActionPerformed
 
