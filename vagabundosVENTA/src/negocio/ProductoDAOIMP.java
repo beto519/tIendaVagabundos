@@ -28,10 +28,11 @@ public class ProductoDAOIMP implements CRUD<Producto> {
                 StringBuilder sql = new StringBuilder();
 
                 sql.append("INSERT INTO producto")
-                        .append("(nombreProducto,cantidadProducto,precioProducto) VALUES")
+                        .append("(nombreProducto,cantidadProducto,precioProducto,codigoProducto) VALUES")
                         .append("('").append(producto.getNombreProducto()).append("',")
                         .append("'").append(producto.getCantidadProducto()).append("',")
-                        .append("'").append(producto.getPrecioProducto()).append("')");
+                        .append("'").append(producto.getPrecioProducto()).append("',")
+                        .append("'").append(producto.getCodigo()).append("')");
 
                 resultado = (boolean) bd.execute(sql.toString(), true);
 

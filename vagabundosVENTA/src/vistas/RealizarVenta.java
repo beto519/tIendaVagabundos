@@ -130,6 +130,7 @@ public class RealizarVenta extends javax.swing.JInternalFrame implements Runnabl
                 "", "", ""
             }
         ));
+        tablaProductos.setEnabled(false);
         tablaProductos.setFillsViewportHeight(true);
         tablaProductos.setShowHorizontalLines(false);
         jScrollPane2.setViewportView(tablaProductos);

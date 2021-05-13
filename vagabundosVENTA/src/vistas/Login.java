@@ -7,6 +7,7 @@ package vistas;
 
 import entidades.Empleado;
 import entidades.TextPrompt;
+import java.awt.event.KeyEvent;
 import negocio.EmpleadoDAOIMP;
 
 /**
@@ -18,15 +19,14 @@ public class Login extends javax.swing.JFrame {
     /**
      * Creates new form Login
      */
-    
     EmpleadoDAOIMP empleadoM = new EmpleadoDAOIMP();
-    
+
     public Login() {
         initComponents();
         this.setLocationRelativeTo(null);
         TextPrompt promt = new TextPrompt("Codigo de empleado", txtCodigo);
         TextPrompt promt2 = new TextPrompt("****", txtContraseña);
-        
+
     }
 
     /**
@@ -60,6 +60,11 @@ public class Login extends javax.swing.JFrame {
         txtContraseña.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtContraseñaActionPerformed(evt);
+            }
+        });
+        txtContraseña.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtContraseñaKeyPressed(evt);
             }
         });
 
@@ -148,37 +153,72 @@ public class Login extends javax.swing.JFrame {
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         try {
-            
+
             long codigoEmpleado = Long.valueOf(txtCodigo.getText());
             String contraseña = txtContraseña.getText();
-            
+
             Empleado result = empleadoM.login(codigoEmpleado, contraseña);
-            
-            if(result.getIdEmpleado() > 0){
+
+            if (result.getIdEmpleado() > 0) {
                 System.out.println("inicio de sesion correcto");
-                System.out.println("idEMpleado: "+result.getIdEmpleado());
+                System.out.println("idEMpleado: " + result.getIdEmpleado());
                 dispose();
                 Principal p = new Principal();
                 Principal.codigoEmpleado = result.getCodigoEmpleado();
                 p.setVisible(true);
-                
-            }else{
+
+            } else {
                 mensajeError.setText("Codigo de empleado o contraseña incorrectos");
                 txtCodigo.setText("");
                 txtContraseña.setText("");
-                
+
             }
-            
-            
+
         } catch (Exception e) {
-            
+
             mensajeError.setText("Ingrese valores correctos");
             txtCodigo.setText("");
             txtContraseña.setText("");
         }
-        
+
 
     }//GEN-LAST:event_btnLoginActionPerformed
+
+    private void txtContraseñaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtContraseñaKeyPressed
+
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+
+            try {
+
+                long codigoEmpleado = Long.valueOf(txtCodigo.getText());
+                String contraseña = txtContraseña.getText();
+
+                Empleado result = empleadoM.login(codigoEmpleado, contraseña);
+
+                if (result.getIdEmpleado() > 0) {
+                    System.out.println("inicio de sesion correcto");
+                    System.out.println("idEMpleado: " + result.getIdEmpleado());
+                    dispose();
+                    Principal p = new Principal();
+                    Principal.codigoEmpleado = result.getCodigoEmpleado();
+                    p.setVisible(true);
+
+                } else {
+                    mensajeError.setText("Codigo de empleado o contraseña incorrectos");
+                    txtCodigo.setText("");
+                    txtContraseña.setText("");
+
+                }
+
+            } catch (Exception e) {
+
+                mensajeError.setText("Ingrese valores correctos");
+                txtCodigo.setText("");
+                txtContraseña.setText("");
+            }
+
+        }
+    }//GEN-LAST:event_txtContraseñaKeyPressed
 
     /**
      * @param args the command line arguments
