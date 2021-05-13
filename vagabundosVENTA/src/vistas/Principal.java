@@ -236,7 +236,7 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-long codigo = Long.valueOf(JOptionPane.showInputDialog("Ingrese codigo de autorización"));
+        long codigo = Long.valueOf(JOptionPane.showInputDialog("Ingrese codigo de autorización"));
 
         long codigoA = empleadoM.autorizacion(codigo);
         if (codigoA > 0) {
@@ -255,7 +255,7 @@ long codigo = Long.valueOf(JOptionPane.showInputDialog("Ingrese codigo de autori
 
     private void jMenuItemEditarEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemEditarEmpleadoActionPerformed
         // TODO add your handling code here:
-        
+
         long codigo = Long.valueOf(JOptionPane.showInputDialog("Ingrese codigo de autorización"));
 
         long codigoA = empleadoM.autorizacion(codigo);
@@ -272,15 +272,10 @@ long codigo = Long.valueOf(JOptionPane.showInputDialog("Ingrese codigo de autori
     }//GEN-LAST:event_jMenuItemEditarEmpleadoActionPerformed
 
     private void btnInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInventarioActionPerformed
-       
-        
 
-            Inventario inventario = new Inventario();
-            inventario.setVisible(true);
-            contenido.add(inventario);
-       
-           
-        
+        Inventario inventario = new Inventario();
+        inventario.setVisible(true);
+        contenido.add(inventario);
 
         // TODO add your handling code here:
     }//GEN-LAST:event_btnInventarioActionPerformed
@@ -289,11 +284,11 @@ long codigo = Long.valueOf(JOptionPane.showInputDialog("Ingrese codigo de autori
         RealizarVenta mostrar = new RealizarVenta();
         mostrar.setVisible(true);
         contenido.add(mostrar);
-        
+
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void btnEliminarProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarProductosActionPerformed
-    long codigo = Long.valueOf(JOptionPane.showInputDialog("Ingrese codigo de autorización"));
+        long codigo = Long.valueOf(JOptionPane.showInputDialog("Ingrese codigo de autorización"));
 
         long codigoA = empleadoM.autorizacion(codigo);
         if (codigoA > 0) {
@@ -307,19 +302,21 @@ long codigo = Long.valueOf(JOptionPane.showInputDialog("Ingrese codigo de autori
                     "Hey!", JOptionPane.ERROR_MESSAGE);
         }
 
-
         // TODO add your handling code here:
     }//GEN-LAST:event_btnEliminarProductosActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        // TODO add your handling code here:
+        Login mostrar = new Login();
+        mostrar.setVisible(true);
+        dispose();
+
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItem3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItem3MouseClicked
 
-   Login login = new Login();
-            login.setVisible(true);
-          dispose();
+        Login login = new Login();
+        login.setVisible(true);
+        dispose();
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem3MouseClicked
 
