@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package negocio;
+
 import configuracion.DBHelper;
 import entidades.Producto;
 import java.sql.ResultSet;
@@ -15,11 +16,13 @@ import java.util.List;
  * @author lopez
  */
 public class ProductoDAOIMP implements CRUD<Producto> {
- DBHelper bd = new DBHelper();
-   String TABLA = "producto";
-     @Override
+
+    DBHelper bd = new DBHelper();
+    String TABLA = "producto";
+
+    @Override
     public boolean agregar(Producto producto) {
-     boolean resultado = false;
+        boolean resultado = false;
         if (bd.connect()) {
             try {
                 StringBuilder sql = new StringBuilder();
@@ -29,7 +32,7 @@ public class ProductoDAOIMP implements CRUD<Producto> {
                         .append("('").append(producto.getNombreProducto()).append("',")
                         .append("'").append(producto.getCantidadProducto()).append("',")
                         .append("'").append(producto.getPrecioProducto()).append("')");
-                       
+
                 resultado = (boolean) bd.execute(sql.toString(), true);
 
             } catch (Exception e) {
@@ -40,37 +43,36 @@ public class ProductoDAOIMP implements CRUD<Producto> {
 
         }
 
-        return resultado;   
-    
-    
+        return resultado;
+
     }
 
     @Override
     public boolean editar(Producto producto) {
-     boolean resultado = false;
+        boolean resultado = false;
         try {
             if (bd.connect()) {
                 String query = "UPDATE producto SET  "
-                        + "`nombreProducto` = '" + producto.getNombreProducto()+ "',  "
-                        + "`cantidadProducto` = '" + producto.getCantidadProducto()+ "',  "
-                        + " `precioProducto` = '" + producto.getPrecioProducto()+ "' "
-                        + " WHERE (`idProducto` = '" + producto.getIdProducto()+ "') ";
+                        + "`nombreProducto` = '" + producto.getNombreProducto() + "',  "
+                        + "`cantidadProducto` = '" + producto.getCantidadProducto() + "',  "
+                        + " `precioProducto` = '" + producto.getPrecioProducto() + "' "
+                        + " WHERE (`idProducto` = '" + producto.getIdProducto() + "') ";
                 resultado = (boolean) bd.execute(query, true);
             }
 
-        } catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e);
-          
+
         } finally {
             bd.disconnect();
         }
-        return resultado; 
+        return resultado;
     }
 
     @Override
     public boolean eliminar(int id) {
-     
-     boolean resultado = false;
+
+        boolean resultado = false;
 
         try {
             if (bd.connect()) {
@@ -82,14 +84,12 @@ public class ProductoDAOIMP implements CRUD<Producto> {
             bd.disconnect();
         }
         return resultado;
-   
-    
-    
+
     }
 
     @Override
     public List<Producto> buscarTodos() {
-     List<Producto> producto = new ArrayList();
+        List<Producto> producto = new ArrayList();
 
         try {
             if (bd.connect()) {
@@ -111,13 +111,13 @@ public class ProductoDAOIMP implements CRUD<Producto> {
         }
 
         return producto;
-    
+
     }
 
     @Override
     public Producto buscarId(int id) {
-    
-     Producto producto = new Producto();
+
+        Producto producto = new Producto();
         try {
             if (bd.connect()) {
                 String query = "SELECT * FROM " + TABLA + " WHERE idProducto = " + id;
@@ -134,19 +134,17 @@ public class ProductoDAOIMP implements CRUD<Producto> {
             bd.disconnect();
         }
         return producto;
-    
-    
+
     }
 
     @Override
     public List<Producto> buscarNombre(String nombre) {
-  
 
-       List<Producto> producto = new ArrayList();
+        List<Producto> producto = new ArrayList();
 
         try {
             if (bd.connect()) {
-                String query = "SELECT * FROM " + TABLA+" WHERE nombreProducto LIKE '"+nombre+"%'";
+                String query = "SELECT * FROM " + TABLA + " WHERE nombreProducto LIKE '" + nombre + "%'";
                 ResultSet rs = (ResultSet) bd.execute(query, false);
                 while (rs.next()) {
                     Producto productos = new Producto();
@@ -164,10 +162,33 @@ public class ProductoDAOIMP implements CRUD<Producto> {
         }
 
         return producto;
-    
-    
+
     }
-    
-    
-    
+
+    public Producto buscarCodigo(String codigo) {
+
+        Producto productos = new Producto();
+
+        try {
+            if (bd.connect()) {
+                String query = "SELECT * FROM " + TABLA + " WHERE codigoProducto = '" + codigo + "'";
+                ResultSet rs = (ResultSet) bd.execute(query, false);
+                while (rs.next()) {
+                    productos.setIdProducto(rs.getInt("idProducto"));
+                    productos.setNombreProducto(rs.getString("nombreProducto"));
+                    productos.setCantidadProducto(rs.getInt("cantidadProducto"));
+                    productos.setPrecioProducto(rs.getDouble("precioProducto"));
+                    productos.setCodigo(rs.getString("codigoProducto"));
+                }
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        } finally {
+            bd.disconnect();
+        }
+
+        return productos;
+
+    }
+
 }
