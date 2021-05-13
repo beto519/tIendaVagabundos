@@ -58,6 +58,8 @@ public class Principal extends javax.swing.JFrame {
         jMenu3 = new javax.swing.JMenu();
         jMenu9 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
+        jSeparator5 = new javax.swing.JPopupMenu.Separator();
+        jMenuItem3 = new javax.swing.JMenuItem();
 
         jMenu4.setText("File");
         jMenuBar2.add(jMenu4);
@@ -182,6 +184,21 @@ public class Principal extends javax.swing.JFrame {
             }
         });
         jMenu9.add(jMenuItem2);
+        jMenu9.add(jSeparator5);
+
+        jMenuItem3.setFont(new java.awt.Font("Lucida Calligraphy", 1, 12)); // NOI18N
+        jMenuItem3.setText("Cerrar Sesion");
+        jMenuItem3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenuItem3MouseClicked(evt);
+            }
+        });
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
+        jMenu9.add(jMenuItem3);
 
         jMenuBar1.add(jMenu9);
 
@@ -294,6 +311,18 @@ long codigo = Long.valueOf(JOptionPane.showInputDialog("Ingrese codigo de autori
         // TODO add your handling code here:
     }//GEN-LAST:event_btnEliminarProductosActionPerformed
 
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void jMenuItem3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItem3MouseClicked
+
+   Login login = new Login();
+            login.setVisible(true);
+          dispose();
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem3MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -347,11 +376,13 @@ long codigo = Long.valueOf(JOptionPane.showInputDialog("Ingrese codigo de autori
     private javax.swing.JMenuBar jMenuBar3;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItemEditarEmpleado;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JPopupMenu.Separator jSeparator3;
     private javax.swing.JPopupMenu.Separator jSeparator4;
+    private javax.swing.JPopupMenu.Separator jSeparator5;
     // End of variables declaration//GEN-END:variables
 }
