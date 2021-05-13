@@ -5,6 +5,7 @@
  */
 package vistas;
 
+import entidades.ImagenFondo;
 import javax.swing.JOptionPane;
 import negocio.EmpleadoDAOIMP;
 
@@ -21,6 +22,7 @@ public class Principal extends javax.swing.JFrame {
 
     public Principal() {
         initComponents();
+        contenido.setBorder(new ImagenFondo());
     }
 
     /**
@@ -39,7 +41,6 @@ public class Principal extends javax.swing.JFrame {
         jMenu6 = new javax.swing.JMenu();
         jMenu7 = new javax.swing.JMenu();
         contenido = new javax.swing.JDesktopPane();
-        jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -67,40 +68,31 @@ public class Principal extends javax.swing.JFrame {
 
         contenido.setBackground(new java.awt.Color(0, 0, 0));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondo.png"))); // NOI18N
-        jLabel1.setText("jLabel1");
-
-        contenido.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
         javax.swing.GroupLayout contenidoLayout = new javax.swing.GroupLayout(contenido);
         contenido.setLayout(contenidoLayout);
         contenidoLayout.setHorizontalGroup(
             contenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(contenidoLayout.createSequentialGroup()
-                .addGap(176, 176, 176)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 394, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(216, Short.MAX_VALUE))
+            .addGap(0, 786, Short.MAX_VALUE)
         );
         contenidoLayout.setVerticalGroup(
             contenidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(contenidoLayout.createSequentialGroup()
-                .addGap(114, 114, 114)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(145, Short.MAX_VALUE))
+            .addGap(0, 429, Short.MAX_VALUE)
         );
 
         jMenuBar1.setMinimumSize(new java.awt.Dimension(0, 8));
 
         jMenu1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icono2/Venta.png"))); // NOI18N
-        jMenu1.setText("Venta");
-        jMenu1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jMenu1.setText("Venta   ");
+        jMenu1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jMenu1.setFont(new java.awt.Font("Lucida Calligraphy", 1, 18)); // NOI18N
         jMenuBar1.add(jMenu1);
 
         jMenu2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icono2/icons8_shirt_30px.png"))); // NOI18N
-        jMenu2.setText("Productos");
-        jMenu2.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jMenu2.setText("Productos   ");
+        jMenu2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jMenu2.setFont(new java.awt.Font("Lucida Calligraphy", 1, 18)); // NOI18N
 
         jMenuItem1.setText("Registrar Productos");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
@@ -122,21 +114,23 @@ public class Principal extends javax.swing.JFrame {
 
         jMenu8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jMenu8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icono2/report.png"))); // NOI18N
-        jMenu8.setText("Reportes");
-        jMenu8.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jMenu8.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jMenu8.setText("Reportes   ");
+        jMenu8.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jMenu8.setFont(new java.awt.Font("Lucida Calligraphy", 1, 18)); // NOI18N
         jMenuBar1.add(jMenu8);
 
         jMenu3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icono2/icons8_money_30px_1.png"))); // NOI18N
-        jMenu3.setText("Cajero");
-        jMenu3.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jMenu3.setText("Cajero   ");
+        jMenu3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jMenu3.setFont(new java.awt.Font("Lucida Calligraphy", 1, 18)); // NOI18N
         jMenuBar1.add(jMenu3);
 
         jMenu9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jMenu9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icono2/icons8_user_30px.png"))); // NOI18N
-        jMenu9.setText("Empleados");
-        jMenu9.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jMenu9.setText("Empleados   ");
+        jMenu9.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jMenu9.setFont(new java.awt.Font("Lucida Calligraphy", 1, 18)); // NOI18N
 
         jMenuItem2.setText("Registrar Empleado");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
@@ -254,7 +248,6 @@ long codigo = Long.valueOf(JOptionPane.showInputDialog("Ingrese codigo de autori
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane contenido;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;

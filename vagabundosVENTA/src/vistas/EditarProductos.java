@@ -108,6 +108,8 @@ public class EditarProductos extends javax.swing.JInternalFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         TablaP = new javax.swing.JTable();
 
+        setClosable(true);
+
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
 
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
