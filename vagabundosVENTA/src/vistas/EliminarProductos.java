@@ -7,6 +7,7 @@ package vistas;
 
 import entidades.Producto;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import negocio.ProductoDAOIMP;
 
@@ -23,17 +24,18 @@ public class EliminarProductos extends javax.swing.JInternalFrame {
         initComponents();
         LlenarTabla();
     }
-    private int id;
+
 
     private void LlenarTabla() {
+        txtID.setVisible(false);
 
         ProductoDAOIMP DAOProducto = new ProductoDAOIMP();
 
         if (txtBuscar.getText().equals("")) {
             List<Producto> list = DAOProducto.buscarTodos();
-            String Info[][] = new String[list.size()][3];
+            String Info[][] = new String[list.size()][4];
             DefaultTableModel model = new DefaultTableModel();
-
+            model.addColumn("ID");
             model.addColumn("Nombre");
             model.addColumn("Cantidad");
             model.addColumn("Precio");
@@ -42,6 +44,7 @@ public class EliminarProductos extends javax.swing.JInternalFrame {
 
                 model.addRow(
                         new Object[]{list.get(i)
+                                    .getIdProducto(),list.get(i)
                                     .getNombreProducto(), list.get(i).getCantidadProducto(), list.get(i)
                             .getPrecioProducto()}
                 );
@@ -51,9 +54,9 @@ public class EliminarProductos extends javax.swing.JInternalFrame {
         } else if (!txtBuscar.equals("")) {
             String nombreProducto = txtBuscar.getText().toString() + "";
             List<Producto> list = DAOProducto.buscarNombre(nombreProducto);
-            String Info[][] = new String[list.size()][3];
+            String Info[][] = new String[list.size()][4];
             DefaultTableModel model = new DefaultTableModel();
-
+            model.addColumn("ID");
             model.addColumn("Nombre");
             model.addColumn("Cantidad");
             model.addColumn("Precio");
@@ -62,6 +65,7 @@ public class EliminarProductos extends javax.swing.JInternalFrame {
 
                 model.addRow(
                         new Object[]{list.get(i)
+                                    .getIdProducto(),list.get(i)
                                     .getNombreProducto(), list.get(i).getCantidadProducto(), list.get(i)
                             .getPrecioProducto()}
                 );
@@ -73,9 +77,13 @@ public class EliminarProductos extends javax.swing.JInternalFrame {
     }
 
     private void EliminarProductos() {
-
+ int idProducto = Integer.valueOf(txtID.getText());
         ProductoDAOIMP DAOProducto = new ProductoDAOIMP();
-        DAOProducto.eliminar(id);
+        
+        DAOProducto.eliminar(idProducto);
+
+  JOptionPane.showMessageDialog(null, "Eliminacion exitosa", "Mensaje",
+                        JOptionPane.DEFAULT_OPTION);
 
     }
 
@@ -95,6 +103,7 @@ public class EliminarProductos extends javax.swing.JInternalFrame {
         jtableProductos = new javax.swing.JTable();
         btnElimarProductos = new javax.swing.JButton();
         btnGuardarRegistrarEmpleado = new javax.swing.JButton();
+        txtID = new javax.swing.JTextField();
 
         setClosable(true);
         setIconifiable(true);
@@ -169,6 +178,11 @@ public class EliminarProductos extends javax.swing.JInternalFrame {
             }
         });
 
+        txtID.setEditable(false);
+        txtID.setBackground(new java.awt.Color(0, 0, 0));
+        txtID.setEnabled(false);
+        txtID.setFocusable(false);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -181,7 +195,9 @@ public class EliminarProductos extends javax.swing.JInternalFrame {
                 .addComponent(btnGuardarRegistrarEmpleado)
                 .addGap(0, 25, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(87, 87, 87)
+                .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnElimarProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -190,17 +206,22 @@ public class EliminarProductos extends javax.swing.JInternalFrame {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnGuardarRegistrarEmpleado))
-                .addGap(22, 22, 22)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnElimarProductos)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnGuardarRegistrarEmpleado))
+                        .addGap(22, 22, 22)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnElimarProductos)))
                 .addContainerGap())
         );
 
@@ -220,10 +241,8 @@ public class EliminarProductos extends javax.swing.JInternalFrame {
 
     private void jtableProductosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtableProductosMouseClicked
         int id = (int) jtableProductos.getValueAt(jtableProductos.getSelectedRow(), 0);
-        String nombre = (String) jtableProductos.getValueAt(jtableProductos.getSelectedRow(), 1).toString();
-        String cantidad = (String) jtableProductos.getValueAt(jtableProductos.getSelectedRow(), 2).toString();
-        String precio = (String) jtableProductos.getValueAt(jtableProductos.getSelectedRow(), 3).toString();
-        this.id = id;
+     
+       txtID.setText(id + "");
         // TODO add your handling code here:
     }//GEN-LAST:event_jtableProductosMouseClicked
 
@@ -239,6 +258,7 @@ public class EliminarProductos extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnElimarProductosActionPerformed
 
     private void btnGuardarRegistrarEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarRegistrarEmpleadoActionPerformed
+       
         LlenarTabla();
 
         // TODO add your handling code here:
@@ -258,5 +278,6 @@ public class EliminarProductos extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jtableProductos;
     private javax.swing.JTextField txtBuscar;
+    private javax.swing.JTextField txtID;
     // End of variables declaration//GEN-END:variables
 }

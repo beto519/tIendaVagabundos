@@ -74,7 +74,7 @@ public class ProductoDAOIMP implements CRUD<Producto> {
 
         try {
             if (bd.connect()) {
-                String query = "DELETE FROM empleado WHERE (`idProducto` = '" + id + "');";
+                String query = "DELETE FROM producto WHERE (`idProducto` = '" + id + "');";
                 resultado = (boolean) bd.execute(query, true);
             }
         } catch (Exception e) {
