@@ -56,7 +56,8 @@ public class ProductoDAOIMP implements CRUD<Producto> {
                 String query = "UPDATE producto SET  "
                         + "`nombreProducto` = '" + producto.getNombreProducto() + "',  "
                         + "`cantidadProducto` = '" + producto.getCantidadProducto() + "',  "
-                        + " `precioProducto` = '" + producto.getPrecioProducto() + "' "
+                         + "`precioProducto` = '" + producto.getPrecioProducto()+ "',  "
+                        + " `codigoProducto` = '" + producto.getCodigo()+ "' "
                         + " WHERE (`idProducto` = '" + producto.getIdProducto() + "') ";
                 resultado = (boolean) bd.execute(query, true);
             }
@@ -102,6 +103,7 @@ public class ProductoDAOIMP implements CRUD<Producto> {
                     productos.setNombreProducto(rs.getString("nombreProducto"));
                     productos.setCantidadProducto(rs.getInt("cantidadProducto"));
                     productos.setPrecioProducto(rs.getDouble("precioProducto"));
+                       productos.setCodigo(rs.getString("codigoProducto"));
                     producto.add(productos);
                 }
             }
@@ -127,6 +129,7 @@ public class ProductoDAOIMP implements CRUD<Producto> {
                     producto.setIdProducto(rs.getInt("idProducto"));
                     producto.setNombreProducto(rs.getString("nombreProducto"));
                     producto.setCantidadProducto(rs.getInt("cantidadProducto"));
+                     producto.setCodigo(rs.getString("codigoProducto"));
                     producto.setPrecioProducto(rs.getDouble("precioProducto"));
                 }
             }
