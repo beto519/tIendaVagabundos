@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package WebService;
+package WSEmpleado;
 
 import entidades.Empleado;
 import java.util.List;
@@ -84,7 +84,7 @@ public class EmpleadoWS {
      * @param codigo
      * @param rol
      * @param puesto
-     * @param contraseña
+    
      * @param id
      * @return
      */

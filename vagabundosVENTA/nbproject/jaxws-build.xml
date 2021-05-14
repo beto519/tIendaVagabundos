@@ -33,5 +33,22 @@
         <delete dir="${build.generated.dir}/jax-wsCache/EmpleadoWS"/>
         <delete dir="${build.generated.sources.dir}/jax-ws/EmpleadoWS"/>
     </target>
-    <target name="wsimport-client-generate" depends="wsimport-client-EmpleadoWS"/>
+    <target name="wsimport-client-ProductoWS" depends="wsimport-init">
+        <mkdir dir="${build.generated.dir}/jax-wsCache/ProductoWS"/>
+        <property name="wsdl-ProductoWS" location="xml-resources/web-service-references/ProductoWS/wsdl/localhost_8080/vagabundosWS/ProductoWS.wsdl"/>
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/ProductoWS" destdir="${build.generated.dir}/jax-wsCache/ProductoWS" wsdl="${wsdl-ProductoWS}" catalog="catalog.xml" encoding="${source.encoding}" extension="true" verbose="true" fork="false" wsdlLocation="http://localhost:8080/vagabundosWS/ProductoWS?WSDL" xnocompile="true" xendorsed="true" package="ProductoWS">
+            <depends file="${wsdl-ProductoWS}"/>
+            <produces dir="${build.generated.dir}/jax-wsCache/ProductoWS"/>
+        </wsimport>
+        <copy todir="${build.generated.sources.dir}/jax-ws">
+            <fileset dir="${build.generated.dir}/jax-wsCache/ProductoWS">
+                <include name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="wsimport-client-clean-ProductoWS" depends="-init-project">
+        <delete dir="${build.generated.dir}/jax-wsCache/ProductoWS"/>
+        <delete dir="${build.generated.sources.dir}/jax-ws/ProductoWS"/>
+    </target>
+    <target name="wsimport-client-generate" depends="wsimport-client-EmpleadoWS, wsimport-client-ProductoWS"/>
 </project>
