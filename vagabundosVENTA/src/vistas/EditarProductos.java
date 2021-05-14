@@ -294,4 +294,16 @@ public class EditarProductos extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtNombreProducto;
     private javax.swing.JTextField txtPrecioProducto;
     // End of variables declaration//GEN-END:variables
+
+    private static boolean agregar(java.lang.String nombreProducto, int cantidad, double precio, java.lang.String codigoProducto) {
+        ProductoWS.ProductoWS_Service service = new ProductoWS.ProductoWS_Service();
+        ProductoWS.ProductoWS port = service.getProductoWSPort();
+        return port.agregar(nombreProducto, cantidad, precio, codigoProducto);
+    }
+
+
+
+   
+
+
 }

@@ -60,8 +60,8 @@ public class EditarEmpleado extends javax.swing.JInternalFrame {
             
 
             if (!nombreEmpleado.equals("")) {
-
-                boolean result = editar(nombreEmpleado, codigoEmpleado, rolEmpleado, puestoEmpleado, idEmpleado);
+                boolean result = false;
+              //  boolean result = editar(nombreEmpleado, codigoEmpleado, rolEmpleado, puestoEmpleado, idEmpleado);
 
                 if (result) {
                     JOptionPane.showMessageDialog(null, "Empleado editado correctamente", "Mensaje",
@@ -345,6 +345,8 @@ public class EditarEmpleado extends javax.swing.JInternalFrame {
         EmpleadoWS.EmpleadoWS port = service.getEmpleadoWSPort();
         return port.editar(nombre, codigo, rol, puesto, id);
     }
+
+  
 
    
 
