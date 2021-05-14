@@ -158,7 +158,7 @@ public class Login extends javax.swing.JFrame {
             String contraseña = txtContraseña.getText();
 
             EmpleadoWS.Empleado result = login(codigoEmpleado, contraseña);
-
+            
             if (result.getIdEmpleado() > 0) {
                 System.out.println("inicio de sesion correcto");
                 System.out.println("idEMpleado: " + result.getIdEmpleado());

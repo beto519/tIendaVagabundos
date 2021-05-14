@@ -58,6 +58,7 @@ public class Principal extends javax.swing.JFrame {
         jMenuItem2 = new javax.swing.JMenuItem();
         jSeparator5 = new javax.swing.JPopupMenu.Separator();
         jMenuItem6 = new javax.swing.JMenuItem();
+        jMenuItem5 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
 
         jMenu4.setText("File");
@@ -193,6 +194,15 @@ public class Principal extends javax.swing.JFrame {
             }
         });
         jMenu9.add(jMenuItem6);
+
+        jMenuItem5.setFont(new java.awt.Font("Lucida Calligraphy", 1, 12)); // NOI18N
+        jMenuItem5.setText("Eliminar Empleado");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
+        jMenu9.add(jMenuItem5);
 
         jMenuItem3.setFont(new java.awt.Font("Lucida Calligraphy", 1, 12)); // NOI18N
         jMenuItem3.setText("Cerrar Sesion");
@@ -370,6 +380,23 @@ public class Principal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+
+ try {
+
+            EliminarEmpleado ep = new EliminarEmpleado();
+            ep.setVisible(true);
+            contenido.add(ep);
+
+        } catch (Exception e) {
+        }
+
+
+
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -425,6 +452,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItemEditarEmpleado;
     private javax.swing.JPopupMenu.Separator jSeparator1;
