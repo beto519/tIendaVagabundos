@@ -156,6 +156,7 @@ public class ProductoDAOIMP implements CRUD<Producto> {
                     productos.setNombreProducto(rs.getString("nombreProducto"));
                     productos.setCantidadProducto(rs.getInt("cantidadProducto"));
                     productos.setPrecioProducto(rs.getDouble("precioProducto"));
+                     productos.setCodigo(rs.getString("codigoProducto"));
                     producto.add(productos);
                 }
             }

@@ -4,6 +4,12 @@
 <xsd:import namespace="http://WSProducto/" schemaLocation="http://localhost:8080/vagabundosWS/ProductoWS?xsd=1"/>
 </xsd:schema>
 </types>
+<message name="agregar">
+<part name="parameters" element="tns:agregar"/>
+</message>
+<message name="agregarResponse">
+<part name="parameters" element="tns:agregarResponse"/>
+</message>
 <message name="editar">
 <part name="parameters" element="tns:editar"/>
 </message>
@@ -16,23 +22,11 @@
 <message name="eliminarResponse">
 <part name="parameters" element="tns:eliminarResponse"/>
 </message>
-<message name="agregar">
-<part name="parameters" element="tns:agregar"/>
+<message name="buscarPorCodigo">
+<part name="parameters" element="tns:buscarPorCodigo"/>
 </message>
-<message name="agregarResponse">
-<part name="parameters" element="tns:agregarResponse"/>
-</message>
-<message name="buscarTodos">
-<part name="parameters" element="tns:buscarTodos"/>
-</message>
-<message name="buscarTodosResponse">
-<part name="parameters" element="tns:buscarTodosResponse"/>
-</message>
-<message name="buscarPorNombre">
-<part name="parameters" element="tns:buscarPorNombre"/>
-</message>
-<message name="buscarPorNombreResponse">
-<part name="parameters" element="tns:buscarPorNombreResponse"/>
+<message name="buscarPorCodigoResponse">
+<part name="parameters" element="tns:buscarPorCodigoResponse"/>
 </message>
 <message name="buscarPorID">
 <part name="parameters" element="tns:buscarPorID"/>
@@ -40,13 +34,23 @@
 <message name="buscarPorIDResponse">
 <part name="parameters" element="tns:buscarPorIDResponse"/>
 </message>
-<message name="buscarPorCodigo">
-<part name="parameters" element="tns:buscarPorCodigo"/>
+<message name="buscarPorNombre">
+<part name="parameters" element="tns:buscarPorNombre"/>
 </message>
-<message name="buscarPorCodigoResponse">
-<part name="parameters" element="tns:buscarPorCodigoResponse"/>
+<message name="buscarPorNombreResponse">
+<part name="parameters" element="tns:buscarPorNombreResponse"/>
+</message>
+<message name="buscarTodos">
+<part name="parameters" element="tns:buscarTodos"/>
+</message>
+<message name="buscarTodosResponse">
+<part name="parameters" element="tns:buscarTodosResponse"/>
 </message>
 <portType name="ProductoWS">
+<operation name="agregar">
+<input wsam:Action="http://WSProducto/ProductoWS/agregarRequest" message="tns:agregar"/>
+<output wsam:Action="http://WSProducto/ProductoWS/agregarResponse" message="tns:agregarResponse"/>
+</operation>
 <operation name="editar">
 <input wsam:Action="http://WSProducto/ProductoWS/editarRequest" message="tns:editar"/>
 <output wsam:Action="http://WSProducto/ProductoWS/editarResponse" message="tns:editarResponse"/>
@@ -55,29 +59,34 @@
 <input wsam:Action="http://WSProducto/ProductoWS/eliminarRequest" message="tns:eliminar"/>
 <output wsam:Action="http://WSProducto/ProductoWS/eliminarResponse" message="tns:eliminarResponse"/>
 </operation>
-<operation name="agregar">
-<input wsam:Action="http://WSProducto/ProductoWS/agregarRequest" message="tns:agregar"/>
-<output wsam:Action="http://WSProducto/ProductoWS/agregarResponse" message="tns:agregarResponse"/>
-</operation>
-<operation name="buscarTodos">
-<input wsam:Action="http://WSProducto/ProductoWS/buscarTodosRequest" message="tns:buscarTodos"/>
-<output wsam:Action="http://WSProducto/ProductoWS/buscarTodosResponse" message="tns:buscarTodosResponse"/>
-</operation>
-<operation name="buscarPorNombre">
-<input wsam:Action="http://WSProducto/ProductoWS/buscarPorNombreRequest" message="tns:buscarPorNombre"/>
-<output wsam:Action="http://WSProducto/ProductoWS/buscarPorNombreResponse" message="tns:buscarPorNombreResponse"/>
+<operation name="buscarPorCodigo">
+<input wsam:Action="http://WSProducto/ProductoWS/buscarPorCodigoRequest" message="tns:buscarPorCodigo"/>
+<output wsam:Action="http://WSProducto/ProductoWS/buscarPorCodigoResponse" message="tns:buscarPorCodigoResponse"/>
 </operation>
 <operation name="buscarPorID">
 <input wsam:Action="http://WSProducto/ProductoWS/buscarPorIDRequest" message="tns:buscarPorID"/>
 <output wsam:Action="http://WSProducto/ProductoWS/buscarPorIDResponse" message="tns:buscarPorIDResponse"/>
 </operation>
-<operation name="buscarPorCodigo">
-<input wsam:Action="http://WSProducto/ProductoWS/buscarPorCodigoRequest" message="tns:buscarPorCodigo"/>
-<output wsam:Action="http://WSProducto/ProductoWS/buscarPorCodigoResponse" message="tns:buscarPorCodigoResponse"/>
+<operation name="buscarPorNombre">
+<input wsam:Action="http://WSProducto/ProductoWS/buscarPorNombreRequest" message="tns:buscarPorNombre"/>
+<output wsam:Action="http://WSProducto/ProductoWS/buscarPorNombreResponse" message="tns:buscarPorNombreResponse"/>
+</operation>
+<operation name="buscarTodos">
+<input wsam:Action="http://WSProducto/ProductoWS/buscarTodosRequest" message="tns:buscarTodos"/>
+<output wsam:Action="http://WSProducto/ProductoWS/buscarTodosResponse" message="tns:buscarTodosResponse"/>
 </operation>
 </portType>
 <binding name="ProductoWSPortBinding" type="tns:ProductoWS">
 <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+<operation name="agregar">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
 <operation name="editar">
 <soap:operation soapAction=""/>
 <input>
@@ -96,25 +105,7 @@
 <soap:body use="literal"/>
 </output>
 </operation>
-<operation name="agregar">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
-<operation name="buscarTodos">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
-<operation name="buscarPorNombre">
+<operation name="buscarPorCodigo">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -132,7 +123,16 @@
 <soap:body use="literal"/>
 </output>
 </operation>
-<operation name="buscarPorCodigo">
+<operation name="buscarPorNombre">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="buscarTodos">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>

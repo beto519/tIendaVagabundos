@@ -26,63 +26,67 @@ public class EliminarProductos extends javax.swing.JInternalFrame {
 
 
     private void LlenarTabla() {
-//        txtID.setVisible(false);
-//
-//        ProductoDAOIMP DAOProducto = new ProductoDAOIMP();
-//
-//        if (txtBuscar.getText().equals("")) {
-//            List<Producto> list = DAOProducto.buscarTodos();
-//            String Info[][] = new String[list.size()][4];
-//            DefaultTableModel model = new DefaultTableModel();
-//            model.addColumn("ID");
-//            model.addColumn("Nombre");
-//            model.addColumn("Cantidad");
-//            model.addColumn("Precio");
-//
-//            for (int i = 0; i < list.size(); i++) {
-//
-//                model.addRow(
-//                        new Object[]{list.get(i)
-//                                    .getIdProducto(),list.get(i)
-//                                    .getNombreProducto(), list.get(i).getCantidadProducto(), list.get(i)
-//                            .getPrecioProducto()}
-//                );
-//
-//                jtableProductos.setModel(model);
-//            }
-//        } else if (!txtBuscar.equals("")) {
-//            String nombreProducto = txtBuscar.getText().toString() + "";
-//            List<Producto> list = DAOProducto.buscarNombre(nombreProducto);
-//            String Info[][] = new String[list.size()][4];
-//            DefaultTableModel model = new DefaultTableModel();
-//            model.addColumn("ID");
-//            model.addColumn("Nombre");
-//            model.addColumn("Cantidad");
-//            model.addColumn("Precio");
-//
-//            for (int i = 0; i < list.size(); i++) {
-//
-//                model.addRow(
-//                        new Object[]{list.get(i)
-//                                    .getIdProducto(),list.get(i)
-//                                    .getNombreProducto(), list.get(i).getCantidadProducto(), list.get(i)
-//                            .getPrecioProducto()}
-//                );
-//
-//                jtableProductos.setModel(model);
-//            }
-//        }
+        txtID.setVisible(false);
+
+  
+
+        if (txtBuscar.getText().equals("")) {
+            List<ProductoWS.Producto> list = buscarTodos();
+            String Info[][] = new String[list.size()][5];
+            DefaultTableModel model = new DefaultTableModel();
+            model.addColumn("ID");
+            model.addColumn("Nombre");
+            model.addColumn("Cantidad");
+            model.addColumn("Precio");
+                model.addColumn("Codigo");
+
+            for (int i = 0; i < list.size(); i++) {
+
+                model.addRow(
+                        new Object[]{list.get(i)
+                                    .getIdProducto(),list.get(i)
+                                    .getNombreProducto(), list.get(i).getCantidadProducto(), list.get(i)
+                            .getPrecioProducto(), list.get(i)
+                            .getCodigo()}
+                );
+
+                jtableProductos.setModel(model);
+            }
+        } else if (!txtBuscar.equals("")) {
+            String nombreProducto = txtBuscar.getText().toString() + "";
+            List<ProductoWS.Producto> list = buscarPorNombre(nombreProducto);
+            String Info[][] = new String[list.size()][5];
+            DefaultTableModel model = new DefaultTableModel();
+            model.addColumn("ID");
+            model.addColumn("Nombre");
+            model.addColumn("Cantidad");
+            model.addColumn("Precio");
+                model.addColumn("Codigo");
+
+            for (int i = 0; i < list.size(); i++) {
+
+                model.addRow(
+                        new Object[]{list.get(i)
+                                    .getIdProducto(),list.get(i)
+                                    .getNombreProducto(), list.get(i).getCantidadProducto(), list.get(i)
+                            .getPrecioProducto(), list.get(i)
+                            .getCodigo()}
+                );
+
+                jtableProductos.setModel(model);
+            }
+        }
 
     }
 
     private void EliminarProductos() {
-// int idProducto = Integer.valueOf(txtID.getText());
-//        ProductoDAOIMP DAOProducto = new ProductoDAOIMP();
-//        
-//        DAOProducto.eliminar(idProducto);
-//
-//  JOptionPane.showMessageDialog(null, "Eliminacion exitosa", "Mensaje",
-//                        JOptionPane.DEFAULT_OPTION);
+ int idProducto = Integer.valueOf(txtID.getText());
+      
+        
+        eliminar(idProducto);
+
+  JOptionPane.showMessageDialog(null, "Eliminacion exitosa", "Mensaje",
+                        JOptionPane.DEFAULT_OPTION);
 
     }
 
@@ -124,11 +128,11 @@ public class EliminarProductos extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "ID", "Nombre", "Cantidad", "Precio"
+                "ID", "Nombre", "Cantidad", "Precio", "Codigo"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
+                java.lang.Integer.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -279,4 +283,24 @@ public class EliminarProductos extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtBuscar;
     private javax.swing.JTextField txtID;
     // End of variables declaration//GEN-END:variables
+
+    private static boolean eliminar(int id) {
+        ProductoWS.ProductoWS_Service service = new ProductoWS.ProductoWS_Service();
+        ProductoWS.ProductoWS port = service.getProductoWSPort();
+        return port.eliminar(id);
+    }
+
+    private static java.util.List<ProductoWS.Producto> buscarTodos() {
+        ProductoWS.ProductoWS_Service service = new ProductoWS.ProductoWS_Service();
+        ProductoWS.ProductoWS port = service.getProductoWSPort();
+        return port.buscarTodos();
+    }
+
+    private static java.util.List<ProductoWS.Producto> buscarPorNombre(java.lang.String nombre) {
+        ProductoWS.ProductoWS_Service service = new ProductoWS.ProductoWS_Service();
+        ProductoWS.ProductoWS port = service.getProductoWSPort();
+        return port.buscarPorNombre(nombre);
+    }
+    
+    
 }

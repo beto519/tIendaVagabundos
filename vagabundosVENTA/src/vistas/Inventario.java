@@ -26,46 +26,50 @@ public class Inventario extends javax.swing.JInternalFrame {
     private void LlenarTabla() {
 
 
-//        if (txtBuscar.getText().equals("")) {
-//            List<Producto> list = DAOProducto.buscarTodos();
-//            String Info[][] = new String[list.size()][3];
-//            DefaultTableModel model = new DefaultTableModel();
-//
-//            model.addColumn("Nombre");
-//            model.addColumn("Cantidad");
-//            model.addColumn("Precio");
-//
-//            for (int i = 0; i < list.size(); i++) {
-//
-//                model.addRow(
-//                        new Object[]{list.get(i)
-//                                    .getNombreProducto(), list.get(i).getCantidadProducto(), list.get(i)
-//                            .getPrecioProducto()}
-//                );
-//
-//                jtableInventario.setModel(model);
-//            }
-//        } else if(!txtBuscar.equals("")) {
-//           String nombreProducto = txtBuscar.getText().toString()+"";
-//           List<Producto> list = DAOProducto.buscarNombre(nombreProducto);
-//            String Info[][] = new String[list.size()][3];
-//            DefaultTableModel model = new DefaultTableModel();
-//
-//            model.addColumn("Nombre");
-//            model.addColumn("Cantidad");
-//            model.addColumn("Precio");
-//
-//            for (int i = 0; i < list.size(); i++) {
-//
-//                model.addRow(
-//                        new Object[]{list.get(i)
-//                                    .getNombreProducto(), list.get(i).getCantidadProducto(), list.get(i)
-//                            .getPrecioProducto()}
-//                );
-//
-//                jtableInventario.setModel(model);
-//            }
-//        }
+        if (txtBuscar.getText().equals("")) {
+            List<ProductoWS.Producto> list = buscarTodos();
+            String Info[][] = new String[list.size()][4];
+            DefaultTableModel model = new DefaultTableModel();
+
+            model.addColumn("Nombre");
+            model.addColumn("Cantidad");
+            model.addColumn("Precio");
+               model.addColumn("Codigo");
+
+            for (int i = 0; i < list.size(); i++) {
+
+                model.addRow(
+                        new Object[]{list.get(i)
+                                    .getNombreProducto(), list.get(i).getCantidadProducto(), list.get(i)
+                            .getPrecioProducto(), list.get(i)
+                            .getCodigo()}
+                );
+
+                jtableInventario.setModel(model);
+            }
+        } else if(!txtBuscar.equals("")) {
+           String nombreProducto = txtBuscar.getText().toString()+"";
+           List<ProductoWS.Producto> list = buscarPorNombre(nombreProducto);
+            String Info[][] = new String[list.size()][4];
+            DefaultTableModel model = new DefaultTableModel();
+
+            model.addColumn("Nombre");
+            model.addColumn("Cantidad");
+            model.addColumn("Precio");
+            model.addColumn("codigo");
+
+            for (int i = 0; i < list.size(); i++) {
+
+                model.addRow(
+                        new Object[]{list.get(i)
+                                    .getNombreProducto(), list.get(i).getCantidadProducto(), list.get(i)
+                            .getPrecioProducto(), list.get(i)
+                            .getCodigo()}
+                );
+
+                jtableInventario.setModel(model);
+            }
+        }
 
     }
 
@@ -86,7 +90,7 @@ public class Inventario extends javax.swing.JInternalFrame {
         txtBuscar = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtableInventario = new javax.swing.JTable();
-        btnGuardarRegistrarEmpleado = new javax.swing.JButton();
+        btnBuscar = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
 
         setClosable(true);
@@ -105,14 +109,14 @@ public class Inventario extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "Nombre", "Cantidad", "Precio"
+                "Nombre", "Cantidad", "Precio", "Codigo"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false, false, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -130,18 +134,18 @@ public class Inventario extends javax.swing.JInternalFrame {
             jtableInventario.getColumnModel().getColumn(2).setResizable(false);
         }
 
-        btnGuardarRegistrarEmpleado.setBackground(new java.awt.Color(0, 51, 51));
-        btnGuardarRegistrarEmpleado.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        btnGuardarRegistrarEmpleado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/upd_norm.png"))); // NOI18N
-        btnGuardarRegistrarEmpleado.setBorder(null);
-        btnGuardarRegistrarEmpleado.setContentAreaFilled(false);
-        btnGuardarRegistrarEmpleado.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnGuardarRegistrarEmpleado.setFocusPainted(false);
-        btnGuardarRegistrarEmpleado.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/upd_roll.png"))); // NOI18N
-        btnGuardarRegistrarEmpleado.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/upd_press.png"))); // NOI18N
-        btnGuardarRegistrarEmpleado.addActionListener(new java.awt.event.ActionListener() {
+        btnBuscar.setBackground(new java.awt.Color(0, 51, 51));
+        btnBuscar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/upd_norm.png"))); // NOI18N
+        btnBuscar.setBorder(null);
+        btnBuscar.setContentAreaFilled(false);
+        btnBuscar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnBuscar.setFocusPainted(false);
+        btnBuscar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/upd_roll.png"))); // NOI18N
+        btnBuscar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/upd_press.png"))); // NOI18N
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGuardarRegistrarEmpleadoActionPerformed(evt);
+                btnBuscarActionPerformed(evt);
             }
         });
 
@@ -160,7 +164,7 @@ public class Inventario extends javax.swing.JInternalFrame {
                         .addGap(121, 121, 121)
                         .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnGuardarRegistrarEmpleado)))
+                        .addComponent(btnBuscar)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -174,7 +178,7 @@ public class Inventario extends javax.swing.JInternalFrame {
                 .addGap(39, 39, 39)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnGuardarRegistrarEmpleado))
+                    .addComponent(btnBuscar))
                 .addGap(24, 24, 24)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(67, Short.MAX_VALUE))
@@ -204,19 +208,31 @@ public class Inventario extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtBuscarActionPerformed
 
-    private void btnGuardarRegistrarEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarRegistrarEmpleadoActionPerformed
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
      LlenarTabla();
 
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnGuardarRegistrarEmpleadoActionPerformed
+    }//GEN-LAST:event_btnBuscarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnGuardarRegistrarEmpleado;
+    private javax.swing.JButton btnBuscar;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jtableInventario;
     private javax.swing.JTextField txtBuscar;
     // End of variables declaration//GEN-END:variables
+
+    private static java.util.List<ProductoWS.Producto> buscarPorNombre(java.lang.String nombre) {
+        ProductoWS.ProductoWS_Service service = new ProductoWS.ProductoWS_Service();
+        ProductoWS.ProductoWS port = service.getProductoWSPort();
+        return port.buscarPorNombre(nombre);
+    }
+
+    private static java.util.List<ProductoWS.Producto> buscarTodos() {
+        ProductoWS.ProductoWS_Service service = new ProductoWS.ProductoWS_Service();
+        ProductoWS.ProductoWS port = service.getProductoWSPort();
+        return port.buscarTodos();
+    }
 }

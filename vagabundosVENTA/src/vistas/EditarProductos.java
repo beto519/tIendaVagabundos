@@ -21,62 +21,63 @@ public class EditarProductos extends javax.swing.JInternalFrame {
      */
     public EditarProductos() {
         initComponents();
-       // LlenarTabla();
+        LlenarTabla();
     }
-    
-//    private void LlenarTabla() {
-//        txtID.setVisible(false);
-//        List<Producto> list = DAOProducto.buscarTodos();
-//        String Info[][] = new String[list.size()][4];
-//        DefaultTableModel model = new DefaultTableModel();
-//        
-//        model.addColumn("Id");
-//        model.addColumn("Nombre");
-//        model.addColumn("Cantidad");
-//        model.addColumn("Precio");
-//        
-//        for (int i = 0; i < list.size(); i++) {
-//            Info[i][0] = list.get(i).getIdProducto() + "";
-//            
-//            model.addRow(
-//                    new Object[]{list.get(i).getIdProducto(), list.get(i)
-//                        .getNombreProducto(), list.get(i).getCantidadProducto(), list.get(i)
-//                        .getPrecioProducto()}
-//            );
-//            
-//            TablaP.setModel(model);
-//        }
-//        
-//    }
-    
+
+    private void LlenarTabla() {
+        txtID.setVisible(false);
+        List<ProductoWS.Producto> list = buscarTodos();
+        String Info[][] = new String[list.size()][4];
+        DefaultTableModel model = new DefaultTableModel();
+
+        model.addColumn("Id");
+        model.addColumn("Nombre");
+        model.addColumn("Cantidad");
+        model.addColumn("Precio");
+        model.addColumn("Codigo");
+
+        for (int i = 0; i < list.size(); i++) {
+            Info[i][0] = list.get(i).getIdProducto() + "";
+
+            model.addRow(
+                    new Object[]{list.get(i).getIdProducto(), list.get(i)
+                        .getNombreProducto(), list.get(i).getCantidadProducto(), list.get(i)
+                        .getPrecioProducto(), list.get(i)
+                                .getCodigo()}
+            );
+
+            TablaP.setModel(model);
+        }
+
+    }
+
     private void EditarProductos() {
-//        Producto producto = new Producto();
-//        ProductoDAOIMP DAOProducto = new ProductoDAOIMP();
-//        try {
-//            
-//            String nombreProducto = txtNombreProducto.getText();
-//            int cantidadProducto = Integer.valueOf(txtCantidadProducto.getText());
-//            int idProducto = Integer.valueOf(txtID.getText());
-//            double precioProducto = Double.parseDouble(txtPrecioProducto.getText());
-//            
-//            if (!nombreProducto.equals("")) {
-//                producto.setIdProducto(idProducto);
-//                producto.setNombreProducto(nombreProducto);
-//                producto.setCantidadProducto(cantidadProducto);
-//                producto.setPrecioProducto(precioProducto);
-//                DAOProducto.editar(producto);
-//                JOptionPane.showMessageDialog(null, "Registro exitoso", "Mensaje",
-//                        JOptionPane.DEFAULT_OPTION);
-//            } else {
-//                JOptionPane.showMessageDialog(null, "Ingrese todos los campos", "Alerta",
-//                        JOptionPane.WARNING_MESSAGE);
-//            }
-//            
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            
-//        }
-        
+        Producto producto = new Producto();
+
+        try {
+
+            String nombreProducto = txtNombreProducto.getText();
+            int cantidadProducto = Integer.valueOf(txtCantidadProducto.getText());
+            int idProducto = Integer.valueOf(txtID.getText());
+            double precioProducto = Double.parseDouble(txtPrecioProducto.getText());
+            String codigoProducto = txtCodigoProducto.getText();
+            if (!nombreProducto.equals("") || codigoProducto.equals("")) {
+
+                editar(nombreProducto, cantidadProducto, precioProducto, codigoProducto, idProducto);
+
+                JOptionPane.showMessageDialog(null, "Registro exitoso", "Mensaje",
+                        JOptionPane.DEFAULT_OPTION);
+
+            } else {
+                JOptionPane.showMessageDialog(null, "Ingrese todos los campos", "Alerta",
+                        JOptionPane.WARNING_MESSAGE);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        }
+
     }
 
     /**
@@ -101,6 +102,8 @@ public class EditarProductos extends javax.swing.JInternalFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         TablaP = new javax.swing.JTable();
         txtID = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        txtCodigoProducto = new javax.swing.JTextField();
 
         setClosable(true);
 
@@ -149,17 +152,17 @@ public class EditarProductos extends javax.swing.JInternalFrame {
 
         TablaP.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "ID", "Nombre", "Cantidad", "Precio"
+                "ID", "Nombre", "Cantidad", "Precio", "Codigo Producto"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
+                java.lang.Integer.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -178,6 +181,9 @@ public class EditarProductos extends javax.swing.JInternalFrame {
         txtID.setEnabled(false);
         txtID.setFocusable(false);
 
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("Codigo ");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -189,7 +195,20 @@ public class EditarProductos extends javax.swing.JInternalFrame {
                         .addComponent(jScrollPane2)
                         .addContainerGap())
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(61, 61, 61))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnGuardarEditarProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(txtCodigoProducto)
                             .addComponent(txtPrecioProducto, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
                             .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
@@ -197,16 +216,7 @@ public class EditarProductos extends javax.swing.JInternalFrame {
                             .addComponent(txtNombreProducto, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtCantidadProducto, javax.swing.GroupLayout.Alignment.LEADING))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(61, 61, 61))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnGuardarEditarProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -230,9 +240,13 @@ public class EditarProductos extends javax.swing.JInternalFrame {
                     .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtPrecioProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtCodigoProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(21, 21, 21)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnGuardarEditarProductos)
                 .addContainerGap(27, Short.MAX_VALUE))
         );
@@ -256,9 +270,10 @@ public class EditarProductos extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtNombreProductoActionPerformed
 
     private void btnGuardarEditarProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarEditarProductosActionPerformed
-        
+
         EditarProductos();
-       // LlenarTabla();
+
+        LlenarTabla();
         // TODO add your handling code here:
     }//GEN-LAST:event_btnGuardarEditarProductosActionPerformed
 
@@ -267,14 +282,22 @@ public class EditarProductos extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnGuardarEditarProductosMouseClicked
 
     private void TablaPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaPMouseClicked
-        int id = (int) TablaP.getValueAt(TablaP.getSelectedRow(), 0);
-        String nombre = (String) TablaP.getValueAt(TablaP.getSelectedRow(), 1).toString();
-        String cantidad = (String) TablaP.getValueAt(TablaP.getSelectedRow(), 2).toString();
-        String precio = (String) TablaP.getValueAt(TablaP.getSelectedRow(), 3).toString();
-        txtID.setText(id + "");
-        txtNombreProducto.setText(nombre);
-        txtCantidadProducto.setText(cantidad);
-        txtPrecioProducto.setText(precio);
+
+        try {
+            int id = (int) TablaP.getValueAt(TablaP.getSelectedRow(), 0);
+            String nombre = (String) TablaP.getValueAt(TablaP.getSelectedRow(), 1).toString();
+            String cantidad = (String) TablaP.getValueAt(TablaP.getSelectedRow(), 2).toString();
+            String precio = (String) TablaP.getValueAt(TablaP.getSelectedRow(), 3).toString();
+            String codigo = (String) TablaP.getValueAt(TablaP.getSelectedRow(), 4).toString();
+            txtID.setText(id + "");
+            txtNombreProducto.setText(nombre);
+            txtCantidadProducto.setText(cantidad);
+            txtPrecioProducto.setText(precio);
+            txtCodigoProducto.setText(codigo);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         // TODO add your handling code here:
     }//GEN-LAST:event_TablaPMouseClicked
 
@@ -287,23 +310,26 @@ public class EditarProductos extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField txtCantidadProducto;
+    private javax.swing.JTextField txtCodigoProducto;
     private javax.swing.JTextField txtID;
     private javax.swing.JTextField txtNombreProducto;
     private javax.swing.JTextField txtPrecioProducto;
     // End of variables declaration//GEN-END:variables
 
-    private static boolean agregar(java.lang.String nombreProducto, int cantidad, double precio, java.lang.String codigoProducto) {
+    private static boolean editar(java.lang.String nombreProducto, int cantidad, double precio, java.lang.String codigoProducto, int id) {
         ProductoWS.ProductoWS_Service service = new ProductoWS.ProductoWS_Service();
         ProductoWS.ProductoWS port = service.getProductoWSPort();
-        return port.agregar(nombreProducto, cantidad, precio, codigoProducto);
+        return port.editar(nombreProducto, cantidad, precio, codigoProducto, id);
     }
 
-
-
-   
-
+    private static java.util.List<ProductoWS.Producto> buscarTodos() {
+        ProductoWS.ProductoWS_Service service = new ProductoWS.ProductoWS_Service();
+        ProductoWS.ProductoWS port = service.getProductoWSPort();
+        return port.buscarTodos();
+    }
 
 }
