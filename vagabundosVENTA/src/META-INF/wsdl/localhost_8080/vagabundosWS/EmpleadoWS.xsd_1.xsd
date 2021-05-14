@@ -67,7 +67,6 @@
 <xs:element name="nombre" type="xs:string" minOccurs="0"/>
 <xs:element name="codigo" type="xs:long"/>
 <xs:element name="rol" type="xs:string" minOccurs="0"/>
-<xs:element name="contraseña" type="xs:string" minOccurs="0"/>
 <xs:element name="puesto" type="xs:string" minOccurs="0"/>
 <xs:element name="id" type="xs:int"/>
 </xs:sequence>

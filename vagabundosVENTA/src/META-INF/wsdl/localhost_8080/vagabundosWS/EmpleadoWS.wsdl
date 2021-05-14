@@ -4,24 +4,6 @@
 <xsd:import namespace="http://WebService/" schemaLocation="http://localhost:8080/vagabundosWS/EmpleadoWS?xsd=1"/>
 </xsd:schema>
 </types>
-<message name="buscarPorID">
-<part name="parameters" element="tns:buscarPorID"/>
-</message>
-<message name="buscarPorIDResponse">
-<part name="parameters" element="tns:buscarPorIDResponse"/>
-</message>
-<message name="autorizacion">
-<part name="parameters" element="tns:autorizacion"/>
-</message>
-<message name="autorizacionResponse">
-<part name="parameters" element="tns:autorizacionResponse"/>
-</message>
-<message name="agregarEmpleado">
-<part name="parameters" element="tns:agregarEmpleado"/>
-</message>
-<message name="agregarEmpleadoResponse">
-<part name="parameters" element="tns:agregarEmpleadoResponse"/>
-</message>
 <message name="login">
 <part name="parameters" element="tns:login"/>
 </message>
@@ -46,19 +28,25 @@
 <message name="buscarTodosResponse">
 <part name="parameters" element="tns:buscarTodosResponse"/>
 </message>
+<message name="agregarEmpleado">
+<part name="parameters" element="tns:agregarEmpleado"/>
+</message>
+<message name="agregarEmpleadoResponse">
+<part name="parameters" element="tns:agregarEmpleadoResponse"/>
+</message>
+<message name="autorizacion">
+<part name="parameters" element="tns:autorizacion"/>
+</message>
+<message name="autorizacionResponse">
+<part name="parameters" element="tns:autorizacionResponse"/>
+</message>
+<message name="buscarPorID">
+<part name="parameters" element="tns:buscarPorID"/>
+</message>
+<message name="buscarPorIDResponse">
+<part name="parameters" element="tns:buscarPorIDResponse"/>
+</message>
 <portType name="EmpleadoWS">
-<operation name="buscarPorID">
-<input wsam:Action="http://WebService/EmpleadoWS/buscarPorIDRequest" message="tns:buscarPorID"/>
-<output wsam:Action="http://WebService/EmpleadoWS/buscarPorIDResponse" message="tns:buscarPorIDResponse"/>
-</operation>
-<operation name="autorizacion">
-<input wsam:Action="http://WebService/EmpleadoWS/autorizacionRequest" message="tns:autorizacion"/>
-<output wsam:Action="http://WebService/EmpleadoWS/autorizacionResponse" message="tns:autorizacionResponse"/>
-</operation>
-<operation name="agregarEmpleado">
-<input wsam:Action="http://WebService/EmpleadoWS/agregarEmpleadoRequest" message="tns:agregarEmpleado"/>
-<output wsam:Action="http://WebService/EmpleadoWS/agregarEmpleadoResponse" message="tns:agregarEmpleadoResponse"/>
-</operation>
 <operation name="login">
 <input wsam:Action="http://WebService/EmpleadoWS/loginRequest" message="tns:login"/>
 <output wsam:Action="http://WebService/EmpleadoWS/loginResponse" message="tns:loginResponse"/>
@@ -75,36 +63,21 @@
 <input wsam:Action="http://WebService/EmpleadoWS/buscarTodosRequest" message="tns:buscarTodos"/>
 <output wsam:Action="http://WebService/EmpleadoWS/buscarTodosResponse" message="tns:buscarTodosResponse"/>
 </operation>
+<operation name="agregarEmpleado">
+<input wsam:Action="http://WebService/EmpleadoWS/agregarEmpleadoRequest" message="tns:agregarEmpleado"/>
+<output wsam:Action="http://WebService/EmpleadoWS/agregarEmpleadoResponse" message="tns:agregarEmpleadoResponse"/>
+</operation>
+<operation name="autorizacion">
+<input wsam:Action="http://WebService/EmpleadoWS/autorizacionRequest" message="tns:autorizacion"/>
+<output wsam:Action="http://WebService/EmpleadoWS/autorizacionResponse" message="tns:autorizacionResponse"/>
+</operation>
+<operation name="buscarPorID">
+<input wsam:Action="http://WebService/EmpleadoWS/buscarPorIDRequest" message="tns:buscarPorID"/>
+<output wsam:Action="http://WebService/EmpleadoWS/buscarPorIDResponse" message="tns:buscarPorIDResponse"/>
+</operation>
 </portType>
 <binding name="EmpleadoWSPortBinding" type="tns:EmpleadoWS">
 <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
-<operation name="buscarPorID">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
-<operation name="autorizacion">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
-<operation name="agregarEmpleado">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
 <operation name="login">
 <soap:operation soapAction=""/>
 <input>
@@ -133,6 +106,33 @@
 </output>
 </operation>
 <operation name="buscarTodos">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="agregarEmpleado">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="autorizacion">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="buscarPorID">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>

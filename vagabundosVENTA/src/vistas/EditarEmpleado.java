@@ -346,6 +346,10 @@ public class EditarEmpleado extends javax.swing.JInternalFrame {
         return port.editar(nombre, codigo, rol, puesto, id);
     }
 
+   
+
+   
+
   
   
 

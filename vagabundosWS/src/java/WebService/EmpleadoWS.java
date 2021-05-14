@@ -79,23 +79,23 @@ public class EmpleadoWS {
 
     /**
      * Web service operation
+     *
      * @param nombre
      * @param codigo
      * @param rol
      * @param puesto
      * @param contraseña
      * @param id
-     * @return 
+     * @return
      */
     @WebMethod(operationName = "editar")
     public Boolean editar(@WebParam(name = "nombre") String nombre, @WebParam(name = "codigo") long codigo, @WebParam(name = "rol") String rol,
-            @WebParam(name = "contraseña") String contraseña, @WebParam(name = "puesto") String puesto,
-            @WebParam(name = "id") int id){
-        
+            @WebParam(name = "puesto") String puesto,
+            @WebParam(name = "id") int id) {
+
         Empleado empleado = new Empleado();
         empleado.setIdEmpleado(id);
         empleado.setCodigoEmpleado(codigo);
-        empleado.setContraseña(contraseña);
         empleado.setNombre(nombre);
         empleado.setPuesto(puesto);
         empleado.setRol(rol);
@@ -104,8 +104,9 @@ public class EmpleadoWS {
 
     /**
      * Web service operation
+     *
      * @param id
-     * @return 
+     * @return
      */
     @WebMethod(operationName = "eliminar")
     public boolean eliminar(@WebParam(name = "id") int id) {
@@ -115,7 +116,8 @@ public class EmpleadoWS {
 
     /**
      * Web service operation
-     * @return 
+     *
+     * @return
      */
     @WebMethod(operationName = "buscarTodos")
     public List<Empleado> buscarTodos() {
@@ -125,22 +127,14 @@ public class EmpleadoWS {
 
     /**
      * Web service operation
+     *
      * @param id
-     * @return 
+     * @return
      */
     @WebMethod(operationName = "buscarPorID")
     public Empleado buscarPorID(@WebParam(name = "id") int id) {
         //TODO write your implementation code here:
         return empleadoM.buscarId(id);
     }
-    
-    
-    
-    
-    
-    
-    
-  
-    
-    
+
 }
