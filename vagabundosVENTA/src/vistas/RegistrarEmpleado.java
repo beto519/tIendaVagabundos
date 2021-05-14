@@ -75,8 +75,6 @@ public class RegistrarEmpleado extends javax.swing.JInternalFrame {
         txtContraseña = new javax.swing.JPasswordField();
 
         setClosable(true);
-        setIconifiable(true);
-        setMaximizable(true);
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
 
