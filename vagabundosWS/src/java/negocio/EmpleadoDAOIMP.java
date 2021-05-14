@@ -109,9 +109,8 @@ String TABLA ="empleados";
                 String query = "UPDATE empleados SET  "
                         + "`nombre` = '" + empleado.getNombre() + "',  "
                         + "`codigo` = '" + empleado.getCodigoEmpleado()+ "',  "
-                        + "`rol` = '" + empleado.getRol()+ "',  "
-                        + "`contraseña` = '" + empleado.getContraseña()+ "', "
-                        + " `puesto` = '" + empleado.getPuesto()+ "' "
+                        + "`rol` = '" + empleado.getRol()+ "',  "                       
+                        + "`puesto` = '" + empleado.getPuesto()+ "' "
                         + " WHERE (`id` = '" + empleado.getIdEmpleado()+ "') ";
                 resultado = (boolean) bd.execute(query, true);
             }

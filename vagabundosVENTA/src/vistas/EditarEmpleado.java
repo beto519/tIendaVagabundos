@@ -28,7 +28,7 @@ public class EditarEmpleado extends javax.swing.JInternalFrame {
         txtID.setVisible(false);
         List<EmpleadoWS.Empleado> list = buscarTodos();
         DefaultTableModel model = new DefaultTableModel();
-
+        
         model.addColumn("Id");
         model.addColumn("Nombre");
         model.addColumn("Codigo");
@@ -57,11 +57,11 @@ public class EditarEmpleado extends javax.swing.JInternalFrame {
             int idEmpleado = Integer.valueOf(txtID.getText());
             String rolEmpleado = txtRol.getText();
             String puestoEmpleado = txtPuesto.getText();
-            String contraseña = "";
+            
 
             if (!nombreEmpleado.equals("")) {
 
-                boolean result = editar(nombreEmpleado, codigoEmpleado, rolEmpleado, contraseña, puestoEmpleado, idEmpleado);
+                boolean result = editar(nombreEmpleado, codigoEmpleado, rolEmpleado, puestoEmpleado, idEmpleado);
 
                 if (result) {
                     JOptionPane.showMessageDialog(null, "Empleado editado correctamente", "Mensaje",
@@ -340,10 +340,17 @@ public class EditarEmpleado extends javax.swing.JInternalFrame {
         return port.buscarTodos();
     }
 
-    private static Boolean editar(java.lang.String nombre, long codigo, java.lang.String rol, java.lang.String contraseña, java.lang.String puesto, int id) {
+    private static Boolean editar(java.lang.String nombre, long codigo, java.lang.String rol, java.lang.String puesto, int id) {
         EmpleadoWS.EmpleadoWS_Service service = new EmpleadoWS.EmpleadoWS_Service();
         EmpleadoWS.EmpleadoWS port = service.getEmpleadoWSPort();
-        return port.editar(nombre, codigo, rol, contraseña, puesto, id);
+        return port.editar(nombre, codigo, rol, puesto, id);
     }
+
+  
+  
+
+   
+
+
 
 }
