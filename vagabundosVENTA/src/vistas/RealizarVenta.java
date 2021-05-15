@@ -5,6 +5,7 @@
  */
 package vistas;
 
+import ProductoWS.BuscarPorCodigo;
 import entidades.Producto;
 import java.awt.event.KeyEvent;
 import java.beans.PropertyVetoException;
@@ -252,19 +253,25 @@ public class RealizarVenta extends javax.swing.JInternalFrame implements Runnabl
 
     private void txtCodigoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoKeyPressed
 
-//        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-//            String codigo = txtCodigo.getText();
-//            Producto p = productoM.buscarCodigo(codigo);
-//            if (p.getIdProducto() > 0) {
-//
-//                productos.add(p);
-//                llenarTabla();
-//
-//            } else {
-//                JOptionPane.showMessageDialog(null, "No se encontro el producto", "Error", JOptionPane.ERROR_MESSAGE);
-//            }
-//
-//        }
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            String codigo = txtCodigo.getText();
+            ProductoWS.Producto pws = buscarPorCodigo(codigo);
+            Producto p = new Producto();
+            p.setCantidadProducto(pws.getCantidadProducto());
+            p.setCodigo(pws.getCodigo());
+            p.setIdProducto(pws.getIdProducto());
+            p.setNombreProducto(pws.getNombreProducto());
+            p.setPrecioProducto(pws.getPrecioProducto());
+            if (p.getIdProducto() > 0) {
+
+                productos.add(p);
+                llenarTabla();
+
+            } else {
+                JOptionPane.showMessageDialog(null, "No se encontro el producto", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+
+        }
     }//GEN-LAST:event_txtCodigoKeyPressed
 
 
@@ -282,5 +289,11 @@ public class RealizarVenta extends javax.swing.JInternalFrame implements Runnabl
     private javax.swing.JTable tablaProductos;
     private javax.swing.JTextField txtCodigo;
     // End of variables declaration//GEN-END:variables
+
+    private static ProductoWS.Producto buscarPorCodigo(java.lang.String codigo) {
+        ProductoWS.ProductoWS_Service service = new ProductoWS.ProductoWS_Service();
+        ProductoWS.ProductoWS port = service.getProductoWSPort();
+        return port.buscarPorCodigo(codigo);
+    }
 
 }

@@ -18,7 +18,8 @@ import java.util.List;
 public class EmpleadoDAOIMP implements CRUD<Empleado> {
 
     DBHelper bd = new DBHelper();
-String TABLA ="empleados";
+    String TABLA = "empleados";
+
     @Override
     public boolean agregar(Empleado empleado) {
         boolean resultado = false;
@@ -64,12 +65,12 @@ String TABLA ="empleados";
 
                 if (rs.next()) {
                     empleado.setCodigoEmpleado(rs.getLong("codigo"));
-                  
+
                     empleado.setContraseña(rs.getString("contraseña"));
                     empleado.setIdEmpleado(rs.getInt("id"));
                     empleado.setNombre(rs.getString("nombre"));
                     empleado.setRol(rs.getString("rol"));
-                     empleado.setPuesto(rs.getString("puesto"));
+                    empleado.setPuesto(rs.getString("puesto"));
                 }
 
             } catch (Exception e) {
@@ -103,33 +104,32 @@ String TABLA ="empleados";
 
     @Override
     public boolean editar(Empleado empleado) {
-    boolean resultado = false;
+        boolean resultado = false;
         try {
             if (bd.connect()) {
                 String query = "UPDATE empleados SET  "
                         + "`nombre` = '" + empleado.getNombre() + "',  "
-                        + "`codigo` = '" + empleado.getCodigoEmpleado()+ "',  "
-                        + "`rol` = '" + empleado.getRol()+ "',  "                       
-                        + "`puesto` = '" + empleado.getPuesto()+ "' "
-                        + " WHERE (`id` = '" + empleado.getIdEmpleado()+ "') ";
+                        + "`codigo` = '" + empleado.getCodigoEmpleado() + "',  "
+                        + "`rol` = '" + empleado.getRol() + "',  "
+                        + "`puesto` = '" + empleado.getPuesto() + "' "
+                        + " WHERE (`id` = '" + empleado.getIdEmpleado() + "') ";
                 resultado = (boolean) bd.execute(query, true);
             }
 
-        } catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e);
-          
+
         } finally {
             bd.disconnect();
         }
         return resultado;
-    
-    
+
     }
 
     @Override
     public boolean eliminar(int id) {
-    
-      boolean resultado = false;
+
+        boolean resultado = false;
 
         try {
             if (bd.connect()) {
@@ -141,14 +141,13 @@ String TABLA ="empleados";
             bd.disconnect();
         }
         return resultado;
-        
-    
+
     }
 
     @Override
     public List<Empleado> buscarTodos() {
-   
-     List<Empleado> empleado = new ArrayList();
+
+        List<Empleado> empleado = new ArrayList();
 
         try {
             if (bd.connect()) {
@@ -160,7 +159,7 @@ String TABLA ="empleados";
                     empleados.setNombre(rs.getString("nombre"));
                     empleados.setCodigoEmpleado(rs.getLong("codigo"));
                     empleados.setRol(rs.getString("rol"));
-                   // empleados.setContraseña(rs.getString("contraseña"));
+                    empleados.setContraseña(rs.getString("contraseña"));
                     empleados.setPuesto(rs.getString("puesto"));
                     empleado.add(empleados);
                 }
@@ -176,9 +175,8 @@ String TABLA ="empleados";
 
     @Override
     public Empleado buscarId(int id) {
-   
-        
-         Empleado empleado = new Empleado();
+
+        Empleado empleado = new Empleado();
         try {
             if (bd.connect()) {
                 String query = "SELECT * FROM " + TABLA + " WHERE id = " + id;
@@ -188,7 +186,7 @@ String TABLA ="empleados";
                     empleado.setNombre(rs.getString("nombre"));
                     empleado.setCodigoEmpleado(rs.getLong("codigo"));
                     empleado.setRol(rs.getString("rol"));
-                   // empleado.setContraseña(rs.getString("contraseña"));
+                    // empleado.setContraseña(rs.getString("contraseña"));
                     empleado.setPuesto(rs.getString("puesto"));
                 }
             }
@@ -197,8 +195,7 @@ String TABLA ="empleados";
             bd.disconnect();
         }
         return empleado;
-    
-    
+
     }
 
     @Override
@@ -207,4 +204,3 @@ String TABLA ="empleados";
     }
 
 }
-
