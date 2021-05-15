@@ -7,11 +7,18 @@ package vistas;
 
 import ProductoWS.BuscarPorCodigo;
 import entidades.Producto;
+import entidades.img;
+import java.awt.Cursor;
+import java.awt.Image;
 import java.awt.event.KeyEvent;
 import java.beans.PropertyVetoException;
+import java.net.URL;
 import java.util.Date;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -24,6 +31,7 @@ import javax.swing.table.DefaultTableModel;
 public class RealizarVenta extends javax.swing.JInternalFrame implements Runnable {
 
     List<Producto> productos = new ArrayList();
+    Double total = 0.0;
 
     String hora, minutos, segundos;
     Thread hilo;
@@ -39,13 +47,13 @@ public class RealizarVenta extends javax.swing.JInternalFrame implements Runnabl
         hilo.start();
         setVisible(true);
         tablaProductos.setTableHeader(null);
-
+        tablaProductos.setDefaultRenderer(Object.class, new img());
+        tablaProductos.setRowHeight(40);
         DefaultTableCellRenderer modelocentrar = new DefaultTableCellRenderer();
         modelocentrar.setHorizontalAlignment(SwingConstants.CENTER);
         tablaProductos.getColumnModel().getColumn(0).setCellRenderer(modelocentrar);   //Izquierda public void izq_datos(int col){  DefaultTableCellRenderer modelocentrar = new DefaultTableCellRenderer(); modelocentrar.setHorizontalAlignment(SwingConstants.LEFT); table.getColumnModel().getColumn(col).setCellRenderer(modelocentrar);  } //Derecha public void der_datos(int col){  DefaultTableCellRenderer modelocentrar = new DefaultTableCellRenderer(); modelocentrar.setHorizontalAlignment(SwingConstants.RIGHT); table.getColumnModel().getColumn(col).setCellRenderer(modelocentrar);  }  //Derecha public void der_datos2(int col){
         tablaProductos.getColumnModel().getColumn(1).setCellRenderer(modelocentrar);   //Izquierda public void izq_datos(int col){  DefaultTableCellRenderer modelocentrar = new DefaultTableCellRenderer(); modelocentrar.setHorizontalAlignment(SwingConstants.LEFT); table.getColumnModel().getColumn(col).setCellRenderer(modelocentrar);  } //Derecha public void der_datos(int col){  DefaultTableCellRenderer modelocentrar = new DefaultTableCellRenderer(); modelocentrar.setHorizontalAlignment(SwingConstants.RIGHT); table.getColumnModel().getColumn(col).setCellRenderer(modelocentrar);  }  //Derecha public void der_datos2(int col){
         tablaProductos.getColumnModel().getColumn(2).setCellRenderer(modelocentrar);   //Izquierda public void izq_datos(int col){  DefaultTableCellRenderer modelocentrar = new DefaultTableCellRenderer(); modelocentrar.setHorizontalAlignment(SwingConstants.LEFT); table.getColumnModel().getColumn(col).setCellRenderer(modelocentrar);  } //Derecha public void der_datos(int col){  DefaultTableCellRenderer modelocentrar = new DefaultTableCellRenderer(); modelocentrar.setHorizontalAlignment(SwingConstants.RIGHT); table.getColumnModel().getColumn(col).setCellRenderer(modelocentrar);  }  //Derecha public void der_datos2(int col){
-
 
     }
 
@@ -80,11 +88,23 @@ public class RealizarVenta extends javax.swing.JInternalFrame implements Runnabl
         DefaultTableModel model = (DefaultTableModel) tablaProductos.getModel();
         model.setRowCount(0);
 
-        for (Producto p : productos) {
+        try {
 
-            model.addRow(new Object[]{
-                p.getCodigo(), p.getNombreProducto(), p.getPrecioProducto()
-            });
+            URL imagePath = new URL(getClass().getResource("../iconos/icons8_cancel_35px.png").toString());
+            Image imagen = ImageIO.read(imagePath);
+            JLabel label = new JLabel();
+            label.setIcon(new ImageIcon(imagen));
+            label.setCursor(new Cursor(Cursor.HAND_CURSOR));
+            label.setHorizontalAlignment(SwingConstants.CENTER);
+            for (Producto p : productos) {
+
+                model.addRow(new Object[]{
+                    p.getCodigo(), p.getNombreProducto(), p.getPrecioProducto(),
+                    label
+                });
+            }
+
+        } catch (Exception e) {
         }
 
     }
@@ -106,6 +126,7 @@ public class RealizarVenta extends javax.swing.JInternalFrame implements Runnabl
         jLabel1 = new javax.swing.JLabel();
         labelFecha = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
+        lblTotal = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -120,19 +141,29 @@ public class RealizarVenta extends javax.swing.JInternalFrame implements Runnabl
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
 
         tablaProductos.setBackground(new java.awt.Color(0, 0, 0));
+        tablaProductos.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         tablaProductos.setForeground(new java.awt.Color(255, 255, 255));
         tablaProductos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null}
+                {null, null, null, null}
             },
             new String [] {
-                "", "", ""
+                "", "", "", ""
             }
         ));
-        tablaProductos.setEnabled(false);
+        tablaProductos.setDragEnabled(true);
         tablaProductos.setFillsViewportHeight(true);
-        tablaProductos.setShowHorizontalLines(false);
+        tablaProductos.setFocusCycleRoot(true);
+        tablaProductos.setFocusTraversalPolicyProvider(true);
+        tablaProductos.setInheritsPopupMenu(true);
+        tablaProductos.setSurrendersFocusOnKeystroke(true);
+        tablaProductos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaProductosMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(tablaProductos);
+        tablaProductos.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
         codigoEmpleado.setText("0000");
 
@@ -164,27 +195,38 @@ public class RealizarVenta extends javax.swing.JInternalFrame implements Runnabl
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        lblTotal.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        lblTotal.setForeground(new java.awt.Color(0, 102, 102));
+        lblTotal.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblTotal.setText("jLabel5");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 185, Short.MAX_VALUE)
+            .addComponent(lblTotal, javax.swing.GroupLayout.DEFAULT_SIZE, 231, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblTotal)
+                .addContainerGap())
         );
 
-        jLabel2.setFont(new java.awt.Font("Lucida Calligraphy", 1, 12)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Lucida Calligraphy", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Codigo");
 
-        jLabel3.setFont(new java.awt.Font("Lucida Calligraphy", 1, 12)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Lucida Calligraphy", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Concepto");
 
-        jLabel4.setFont(new java.awt.Font("Lucida Calligraphy", 1, 12)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Lucida Calligraphy", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Precio");
 
         txtCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -197,25 +239,24 @@ public class RealizarVenta extends javax.swing.JInternalFrame implements Runnabl
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(76, 76, 76)
-                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 54, Short.MAX_VALUE)
-                .addGap(171, 171, 171)
-                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE)
-                .addGap(159, 159, 159)
-                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 55, Short.MAX_VALUE)
-                .addGap(284, 284, 284))
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 628, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -223,18 +264,17 @@ public class RealizarVenta extends javax.swing.JInternalFrame implements Runnabl
                 .addContainerGap()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(50, 50, 50)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 355, Short.MAX_VALUE)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(48, 48, 48))
+                .addGap(85, 85, 85))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -265,6 +305,8 @@ public class RealizarVenta extends javax.swing.JInternalFrame implements Runnabl
             if (p.getIdProducto() > 0) {
 
                 productos.add(p);
+                total += p.getPrecioProducto();
+                lblTotal.setText("Total: " + total);
                 llenarTabla();
 
             } else {
@@ -273,6 +315,32 @@ public class RealizarVenta extends javax.swing.JInternalFrame implements Runnabl
 
         }
     }//GEN-LAST:event_txtCodigoKeyPressed
+
+    private void tablaProductosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaProductosMouseClicked
+
+        int fila = tablaProductos.getSelectedRow();
+        int columna = tablaProductos.getSelectedColumn();
+
+        if (columna == 3) {
+
+            try {
+                String codigoProducto =(String) tablaProductos.getValueAt(fila, 0);
+                for (int i = 0; i < productos.size(); i++) {
+                    if (productos.get(i).getCodigo().equals(codigoProducto)) {
+                        productos.remove(i);
+                        break;
+                    }
+                }
+                llenarTabla();
+
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "No se encontro el producto", "Error", JOptionPane.ERROR_MESSAGE);
+
+            }
+
+        }
+
+    }//GEN-LAST:event_tablaProductosMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -286,6 +354,7 @@ public class RealizarVenta extends javax.swing.JInternalFrame implements Runnabl
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel labelFecha;
+    private javax.swing.JLabel lblTotal;
     private javax.swing.JTable tablaProductos;
     private javax.swing.JTextField txtCodigo;
     // End of variables declaration//GEN-END:variables
