@@ -106,6 +106,7 @@ public class EditarProductos extends javax.swing.JInternalFrame {
         txtCodigoProducto = new javax.swing.JTextField();
 
         setClosable(true);
+        setIconifiable(true);
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
 

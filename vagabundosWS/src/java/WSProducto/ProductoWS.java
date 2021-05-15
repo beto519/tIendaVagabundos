@@ -34,10 +34,9 @@ public class ProductoWS {
 
         Producto producto = new Producto();
         producto.setCantidadProducto(cantidad);
-        producto.setCodigo(codigoProducto);
         producto.setNombreProducto(nombreProducto);
         producto.setPrecioProducto(precio);
-
+    producto.setCodigo(codigoProducto);
         return productoM.agregar(producto);
 
     }

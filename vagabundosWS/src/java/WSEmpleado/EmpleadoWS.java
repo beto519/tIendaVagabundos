@@ -51,7 +51,7 @@ public class EmpleadoWS {
 
     /**
      * Web service operation
-     *
+     *Login de empleados, que permite ingresar a la aplicacion.
      * @param codigo
      * @param contraseña
      * @return

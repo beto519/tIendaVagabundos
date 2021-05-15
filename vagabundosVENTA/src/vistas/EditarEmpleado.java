@@ -109,6 +109,7 @@ public class EditarEmpleado extends javax.swing.JInternalFrame {
         btnGuardarEditarProductos = new javax.swing.JButton();
 
         setClosable(true);
+        setIconifiable(true);
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
 

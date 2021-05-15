@@ -65,6 +65,7 @@ public class EliminarEmpleado extends javax.swing.JInternalFrame {
         jLabel2 = new javax.swing.JLabel();
 
         setClosable(true);
+        setIconifiable(true);
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
 

@@ -111,12 +111,12 @@ public class RealizarVenta extends javax.swing.JInternalFrame implements Runnabl
         txtCodigo = new javax.swing.JTextField();
 
         setClosable(true);
+        setIconifiable(true);
         setTitle("Realizar venta");
         setLayer(6);
         setVisible(true);
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
-        jPanel1.setForeground(new java.awt.Color(0, 0, 0));
 
         tablaProductos.setBackground(new java.awt.Color(0, 0, 0));
         tablaProductos.setForeground(new java.awt.Color(255, 255, 255));
