@@ -53,15 +53,15 @@ public class EditarEmpleado extends javax.swing.JInternalFrame {
         try {
 
             String nombreEmpleado = txtNombre.getText();
-            int codigoEmpleado = Integer.valueOf(txtCodigo.getText());
+            long codigoEmpleado = Long.parseLong(txtCodigo.getText());
             int idEmpleado = Integer.valueOf(txtID.getText());
             String rolEmpleado = txtRol.getText();
             String puestoEmpleado = txtPuesto.getText();
             
 
             if (!nombreEmpleado.equals("")) {
-                boolean result = false;
-              //  boolean result = editar(nombreEmpleado, codigoEmpleado, rolEmpleado, puestoEmpleado, idEmpleado);
+             
+               boolean result = editar(nombreEmpleado, codigoEmpleado, rolEmpleado, puestoEmpleado, idEmpleado);
 
                 if (result) {
                     JOptionPane.showMessageDialog(null, "Empleado editado correctamente", "Mensaje",
@@ -71,12 +71,10 @@ public class EditarEmpleado extends javax.swing.JInternalFrame {
                             JOptionPane.WARNING_MESSAGE);
                 }
 
-            } else {
-                JOptionPane.showMessageDialog(null, "Ingrese todos los campos", "Alerta",
-                        JOptionPane.WARNING_MESSAGE);
-            }
+            } 
 
         } catch (Exception e) {
+            
             e.printStackTrace();
 
         }
@@ -346,6 +344,8 @@ public class EditarEmpleado extends javax.swing.JInternalFrame {
         EmpleadoWS.EmpleadoWS port = service.getEmpleadoWSPort();
         return port.editar(nombre, codigo, rol, puesto, id);
     }
+
+
 
   
 

@@ -4,11 +4,11 @@
 <xsd:import namespace="http://WSEmpleado/" schemaLocation="http://localhost:8080/vagabundosWS/EmpleadoWS?xsd=1"/>
 </xsd:schema>
 </types>
-<message name="login">
-<part name="parameters" element="tns:login"/>
+<message name="eliminar">
+<part name="parameters" element="tns:eliminar"/>
 </message>
-<message name="loginResponse">
-<part name="parameters" element="tns:loginResponse"/>
+<message name="eliminarResponse">
+<part name="parameters" element="tns:eliminarResponse"/>
 </message>
 <message name="editar">
 <part name="parameters" element="tns:editar"/>
@@ -16,17 +16,11 @@
 <message name="editarResponse">
 <part name="parameters" element="tns:editarResponse"/>
 </message>
-<message name="eliminar">
-<part name="parameters" element="tns:eliminar"/>
+<message name="login">
+<part name="parameters" element="tns:login"/>
 </message>
-<message name="eliminarResponse">
-<part name="parameters" element="tns:eliminarResponse"/>
-</message>
-<message name="agregarEmpleado">
-<part name="parameters" element="tns:agregarEmpleado"/>
-</message>
-<message name="agregarEmpleadoResponse">
-<part name="parameters" element="tns:agregarEmpleadoResponse"/>
+<message name="loginResponse">
+<part name="parameters" element="tns:loginResponse"/>
 </message>
 <message name="buscarTodos">
 <part name="parameters" element="tns:buscarTodos"/>
@@ -46,22 +40,24 @@
 <message name="autorizacionResponse">
 <part name="parameters" element="tns:autorizacionResponse"/>
 </message>
+<message name="agregarEmpleado">
+<part name="parameters" element="tns:agregarEmpleado"/>
+</message>
+<message name="agregarEmpleadoResponse">
+<part name="parameters" element="tns:agregarEmpleadoResponse"/>
+</message>
 <portType name="EmpleadoWS">
-<operation name="login">
-<input wsam:Action="http://WSEmpleado/EmpleadoWS/loginRequest" message="tns:login"/>
-<output wsam:Action="http://WSEmpleado/EmpleadoWS/loginResponse" message="tns:loginResponse"/>
+<operation name="eliminar">
+<input wsam:Action="http://WSEmpleado/EmpleadoWS/eliminarRequest" message="tns:eliminar"/>
+<output wsam:Action="http://WSEmpleado/EmpleadoWS/eliminarResponse" message="tns:eliminarResponse"/>
 </operation>
 <operation name="editar">
 <input wsam:Action="http://WSEmpleado/EmpleadoWS/editarRequest" message="tns:editar"/>
 <output wsam:Action="http://WSEmpleado/EmpleadoWS/editarResponse" message="tns:editarResponse"/>
 </operation>
-<operation name="eliminar">
-<input wsam:Action="http://WSEmpleado/EmpleadoWS/eliminarRequest" message="tns:eliminar"/>
-<output wsam:Action="http://WSEmpleado/EmpleadoWS/eliminarResponse" message="tns:eliminarResponse"/>
-</operation>
-<operation name="agregarEmpleado">
-<input wsam:Action="http://WSEmpleado/EmpleadoWS/agregarEmpleadoRequest" message="tns:agregarEmpleado"/>
-<output wsam:Action="http://WSEmpleado/EmpleadoWS/agregarEmpleadoResponse" message="tns:agregarEmpleadoResponse"/>
+<operation name="login">
+<input wsam:Action="http://WSEmpleado/EmpleadoWS/loginRequest" message="tns:login"/>
+<output wsam:Action="http://WSEmpleado/EmpleadoWS/loginResponse" message="tns:loginResponse"/>
 </operation>
 <operation name="buscarTodos">
 <input wsam:Action="http://WSEmpleado/EmpleadoWS/buscarTodosRequest" message="tns:buscarTodos"/>
@@ -75,10 +71,14 @@
 <input wsam:Action="http://WSEmpleado/EmpleadoWS/autorizacionRequest" message="tns:autorizacion"/>
 <output wsam:Action="http://WSEmpleado/EmpleadoWS/autorizacionResponse" message="tns:autorizacionResponse"/>
 </operation>
+<operation name="agregarEmpleado">
+<input wsam:Action="http://WSEmpleado/EmpleadoWS/agregarEmpleadoRequest" message="tns:agregarEmpleado"/>
+<output wsam:Action="http://WSEmpleado/EmpleadoWS/agregarEmpleadoResponse" message="tns:agregarEmpleadoResponse"/>
+</operation>
 </portType>
 <binding name="EmpleadoWSPortBinding" type="tns:EmpleadoWS">
 <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
-<operation name="login">
+<operation name="eliminar">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -96,16 +96,7 @@
 <soap:body use="literal"/>
 </output>
 </operation>
-<operation name="eliminar">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
-<operation name="agregarEmpleado">
+<operation name="login">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -133,6 +124,15 @@
 </output>
 </operation>
 <operation name="autorizacion">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="agregarEmpleado">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
