@@ -18,7 +18,6 @@ public class Login extends javax.swing.JFrame {
     /**
      * Creates new form Login
      */
-
     public Login() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -150,15 +149,14 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_txtContraseñaActionPerformed
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-      
-        
+
         try {
 
             long codigoEmpleado = Long.valueOf(txtCodigo.getText());
             String contraseña = txtContraseña.getText();
 
             EmpleadoWS.Empleado result = login(codigoEmpleado, contraseña);
-            
+
             if (result.getIdEmpleado() > 0) {
                 System.out.println("inicio de sesion correcto");
                 System.out.println("idEMpleado: " + result.getIdEmpleado());
@@ -201,6 +199,8 @@ public class Login extends javax.swing.JFrame {
                     dispose();
                     Principal p = new Principal();
                     Principal.codigoEmpleado = result.getCodigoEmpleado();
+                    Principal.idEmpleado = result.getIdEmpleado();
+
                     p.setVisible(true);
 
                 } else {
@@ -273,6 +273,4 @@ public class Login extends javax.swing.JFrame {
         return port.login(codigoEmpleado, contraseña);
     }
 
-    
-    
 }

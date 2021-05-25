@@ -32,7 +32,7 @@ public class ProductoVendidoWS {
     @WebMethod(operationName = "AgregarProductoVendido")
     public Boolean AgregarProductoVendido(@WebParam(name = "idProducto") int idProducto, @WebParam(name = "idTicket") int idTicket) {
         //TODO write your implementation code here:
-        p.setIdProductoVendido(idProducto);
+        p.setIdProducto(idProducto);
         p.setIdTicket(idTicket);
         
         return metodo.agregar(p);

@@ -51,7 +51,7 @@ public class TicketDAOIMP implements CRUD<Ticket> {
 
         try {
 
-            String query = "SELECT * FROM Ticket";
+            String query = "SELECT * FROM ticket";
 
             if (bd.connect()) {
 
@@ -60,7 +60,7 @@ public class TicketDAOIMP implements CRUD<Ticket> {
                 while (rs.next()) {
                     Ticket tk = new Ticket();
 
-                    tk.setFecha(rs.getDate("fecha"));
+                    tk.setFecha(rs.getString("fecha"));
                     tk.setIdEmpleado(rs.getInt("idEmpleado"));
                     tk.setIdTicket(rs.getInt("idTicket"));
                     tk.setTotal(rs.getLong("total"));
@@ -95,7 +95,7 @@ public class TicketDAOIMP implements CRUD<Ticket> {
 
                 while (rs.next()) {
 
-                    tk.setFecha(rs.getDate("fecha"));
+                    tk.setFecha(rs.getString("fecha"));
                     tk.setIdEmpleado(rs.getInt("idEmpleado"));
                     tk.setIdTicket(rs.getInt("idTicket"));
                     tk.setTotal(rs.getLong("total"));

@@ -4,4 +4,8 @@
     <system systemId="http://localhost:8080/vagabundosWS/EmpleadoWS?xsd=1" uri="wsdl/localhost_8080/vagabundosWS/EmpleadoWS.xsd_1.xsd"/>
     <system systemId="http://localhost:8080/vagabundosWS/ProductoWS?WSDL" uri="wsdl/localhost_8080/vagabundosWS/ProductoWS.wsdl"/>
     <system systemId="http://localhost:8080/vagabundosWS/ProductoWS?xsd=1" uri="wsdl/localhost_8080/vagabundosWS/ProductoWS.xsd_1.xsd"/>
+    <system systemId="http://localhost:8080/vagabundosWS/ProductoVendidoWS?WSDL" uri="wsdl/localhost_8080/vagabundosWS/ProductoVendidoWS.wsdl"/>
+    <system systemId="http://localhost:8080/vagabundosWS/ProductoVendidoWS?xsd=1" uri="wsdl/localhost_8080/vagabundosWS/ProductoVendidoWS.xsd_1.xsd"/>
+    <system systemId="http://localhost:8080/vagabundosWS/TicketWS?WSDL" uri="wsdl/localhost_8080/vagabundosWS/TicketWS.wsdl"/>
+    <system systemId="http://localhost:8080/vagabundosWS/TicketWS?xsd=1" uri="wsdl/localhost_8080/vagabundosWS/TicketWS.xsd_1.xsd"/>
 </catalog>

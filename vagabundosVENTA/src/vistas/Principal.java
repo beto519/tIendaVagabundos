@@ -18,6 +18,7 @@ public class Principal extends javax.swing.JFrame {
      * Creates new form Principal
      */
     public static long codigoEmpleado;
+    public static int idEmpleado;
 
     public Principal() {
         initComponents();
@@ -382,7 +383,7 @@ public class Principal extends javax.swing.JFrame {
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
 
- try {
+        try {
 
             EliminarEmpleado ep = new EliminarEmpleado();
             ep.setVisible(true);
@@ -390,9 +391,6 @@ public class Principal extends javax.swing.JFrame {
 
         } catch (Exception e) {
         }
-
-
-
 
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem5ActionPerformed

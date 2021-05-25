@@ -23,21 +23,12 @@ public class TicketWS {
     TicketDAOIMP metodos = new TicketDAOIMP();
     Ticket tk = new Ticket();
 
-    /**
-     * This is a sample web service operation
-     * @param txt
-     * @return 
-     */
-    @WebMethod(operationName = "hello")
-    public String hello(@WebParam(name = "name") String txt) {
-        return "Hello " + txt + " !";
-    }
-
+    
     @WebMethod(operationName = "agregarTicket")
     public boolean agregarTicket(
-            @WebParam(name = "fecha") Date fecha,
+            @WebParam(name = "fecha") String fecha,
             @WebParam(name = "idEmpleado") int idEmpleado,
-            @WebParam(name = "total") long total
+            @WebParam(name = "total") double total
             ) {
         
         tk.setFecha(fecha);
@@ -73,8 +64,5 @@ public class TicketWS {
     
     
     
-    
-    
-    
-
+  
 }

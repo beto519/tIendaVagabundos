@@ -14,9 +14,9 @@ import java.util.Date;
 public class Ticket {
     
     private int idTicket;
-    private Date fecha;
+    private String fecha;
     private int idEmpleado;
-    private long total;
+    private double total;
 
     public Ticket() {
     }
@@ -29,11 +29,11 @@ public class Ticket {
         this.idTicket = idTicket;
     }
 
-    public Date getFecha() {
+    public String getFecha() {
         return fecha;
     }
 
-    public void setFecha(Date fecha) {
+    public void setFecha(String fecha) {
         this.fecha = fecha;
     }
 
@@ -45,11 +45,11 @@ public class Ticket {
         this.idEmpleado = idEmpleado;
     }
 
-    public long getTotal() {
+    public double getTotal() {
         return total;
     }
 
-    public void setTotal(long total) {
+    public void setTotal(double total) {
         this.total = total;
     }
     

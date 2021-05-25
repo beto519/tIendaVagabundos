@@ -28,12 +28,11 @@ public class ProductoVendidoDAOIMP implements CRUD<ProductoVendido> {
 
             if (bd.connect()) {
 
-                String query = "INSERT INTO `bfbkuvpw7umrcsbqjoms`.`productoVendido` (`idProducto`, `idTicket`) VALUES"
-                        + " ('" + t.getIdProducto() + "', '" + t.getIdTicket() + "');";
-
+                String query = "INSERT INTO `bfbkuvpw7umrcsbqjoms`.`productoVendido` (`idProducto`, `idTicket`) VALUES ('"+t.getIdProducto()+"', '"+t.getIdTicket()+"');";
                 resultado = (boolean) bd.execute(query, true);
 
-            }
+            }//INSERT INTO `bfbkuvpw7umrcsbqjoms`.`productoVendido` (`idProductoVendido`, `idProducto`, `idTicket`) VALUES ('4', '4', '1');
+
 
         } catch (Exception e) {
 
