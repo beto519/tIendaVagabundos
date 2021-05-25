@@ -54,7 +54,7 @@ public class RealizarVenta extends javax.swing.JInternalFrame implements Runnabl
         tablaProductos.getColumnModel().getColumn(0).setCellRenderer(modelocentrar);   //Izquierda public void izq_datos(int col){  DefaultTableCellRenderer modelocentrar = new DefaultTableCellRenderer(); modelocentrar.setHorizontalAlignment(SwingConstants.LEFT); table.getColumnModel().getColumn(col).setCellRenderer(modelocentrar);  } //Derecha public void der_datos(int col){  DefaultTableCellRenderer modelocentrar = new DefaultTableCellRenderer(); modelocentrar.setHorizontalAlignment(SwingConstants.RIGHT); table.getColumnModel().getColumn(col).setCellRenderer(modelocentrar);  }  //Derecha public void der_datos2(int col){
         tablaProductos.getColumnModel().getColumn(1).setCellRenderer(modelocentrar);   //Izquierda public void izq_datos(int col){  DefaultTableCellRenderer modelocentrar = new DefaultTableCellRenderer(); modelocentrar.setHorizontalAlignment(SwingConstants.LEFT); table.getColumnModel().getColumn(col).setCellRenderer(modelocentrar);  } //Derecha public void der_datos(int col){  DefaultTableCellRenderer modelocentrar = new DefaultTableCellRenderer(); modelocentrar.setHorizontalAlignment(SwingConstants.RIGHT); table.getColumnModel().getColumn(col).setCellRenderer(modelocentrar);  }  //Derecha public void der_datos2(int col){
         tablaProductos.getColumnModel().getColumn(2).setCellRenderer(modelocentrar);   //Izquierda public void izq_datos(int col){  DefaultTableCellRenderer modelocentrar = new DefaultTableCellRenderer(); modelocentrar.setHorizontalAlignment(SwingConstants.LEFT); table.getColumnModel().getColumn(col).setCellRenderer(modelocentrar);  } //Derecha public void der_datos(int col){  DefaultTableCellRenderer modelocentrar = new DefaultTableCellRenderer(); modelocentrar.setHorizontalAlignment(SwingConstants.RIGHT); table.getColumnModel().getColumn(col).setCellRenderer(modelocentrar);  }  //Derecha public void der_datos2(int col){
-
+        lblTotal.setVisible(false);
     }
 
     //metodo para obtener la fecha actual
@@ -85,6 +85,7 @@ public class RealizarVenta extends javax.swing.JInternalFrame implements Runnabl
     }
 
     public void llenarTabla() {
+        total = 0.0;
         DefaultTableModel model = (DefaultTableModel) tablaProductos.getModel();
         model.setRowCount(0);
 
@@ -102,6 +103,17 @@ public class RealizarVenta extends javax.swing.JInternalFrame implements Runnabl
                     p.getCodigo(), p.getNombreProducto(), p.getPrecioProducto(),
                     label
                 });
+
+                total += p.getPrecioProducto();
+
+            }
+
+            if (productos.get(productos.size() - 1).getIdProducto() > 0) {
+                lblTotal.show(true);
+            } else {
+
+                lblTotal.show(false);
+
             }
 
         } catch (Exception e) {
@@ -305,9 +317,9 @@ public class RealizarVenta extends javax.swing.JInternalFrame implements Runnabl
             if (p.getIdProducto() > 0) {
 
                 productos.add(p);
-                total += p.getPrecioProducto();
-                lblTotal.setText("Total: " + total);
                 llenarTabla();
+
+                lblTotal.setText("Total: " + total);
 
             } else {
                 JOptionPane.showMessageDialog(null, "No se encontro el producto", "Error", JOptionPane.ERROR_MESSAGE);
@@ -324,7 +336,7 @@ public class RealizarVenta extends javax.swing.JInternalFrame implements Runnabl
         if (columna == 3) {
 
             try {
-                String codigoProducto =(String) tablaProductos.getValueAt(fila, 0);
+                String codigoProducto = (String) tablaProductos.getValueAt(fila, 0);
                 for (int i = 0; i < productos.size(); i++) {
                     if (productos.get(i).getCodigo().equals(codigoProducto)) {
                         productos.remove(i);
@@ -332,6 +344,7 @@ public class RealizarVenta extends javax.swing.JInternalFrame implements Runnabl
                     }
                 }
                 llenarTabla();
+                lblTotal.setText("Total: " + total);
 
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "No se encontro el producto", "Error", JOptionPane.ERROR_MESSAGE);

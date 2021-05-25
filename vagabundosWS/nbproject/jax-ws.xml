@@ -7,6 +7,12 @@
     <service name="EmpleadoWS">
       <implementation-class>WSEmpleado.EmpleadoWS</implementation-class>
     </service>
+    <service name="ProductoVendidoWS">
+      <implementation-class>WSProductoVendido.ProductoVendidoWS</implementation-class>
+    </service>
+    <service name="TicketWS">
+      <implementation-class>WSTicket.TicketWS</implementation-class>
+    </service>
   </services>
   <clients/>
 </jax-ws>
