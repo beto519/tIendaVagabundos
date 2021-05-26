@@ -13,6 +13,9 @@
     <service name="TicketWS">
       <implementation-class>WSTicket.TicketWS</implementation-class>
     </service>
+    <service name="UsuarioWS">
+      <implementation-class>WSUsuario.UsuarioWS</implementation-class>
+    </service>
   </services>
   <clients/>
 </jax-ws>
