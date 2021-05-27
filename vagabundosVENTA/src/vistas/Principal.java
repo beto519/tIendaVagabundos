@@ -6,7 +6,14 @@
 package vistas;
 
 import entidades.ImagenFondo;
+import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
 import javax.swing.JOptionPane;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.view.JasperViewer;
+
 
 /**
  *
@@ -54,6 +61,7 @@ public class Principal extends javax.swing.JFrame {
         btnInventario = new javax.swing.JMenuItem();
         jSeparator4 = new javax.swing.JPopupMenu.Separator();
         jMenu8 = new javax.swing.JMenu();
+        jMenuItemInventario = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenu9 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
@@ -162,6 +170,15 @@ public class Principal extends javax.swing.JFrame {
         jMenu8.setText("Reportes   ");
         jMenu8.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jMenu8.setFont(new java.awt.Font("Lucida Calligraphy", 1, 18)); // NOI18N
+
+        jMenuItemInventario.setText("Inventario");
+        jMenuItemInventario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemInventarioActionPerformed(evt);
+            }
+        });
+        jMenu8.add(jMenuItemInventario);
+
         jMenuBar1.add(jMenu8);
 
         jMenu3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -395,6 +412,26 @@ public class Principal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
+    private void jMenuItemInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemInventarioActionPerformed
+       
+        
+        try {
+           
+
+                File reporte = new File("src/reportes/Inventario.jasper");
+               
+
+                JasperPrint print = JasperFillManager.fillReport(reporte.getPath());
+                JasperViewer viewer = new JasperViewer(print, false);
+                viewer.setVisible(true);
+            
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        } 
+        
+    }//GEN-LAST:event_jMenuItemInventarioActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -453,6 +490,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItemEditarEmpleado;
+    private javax.swing.JMenuItem jMenuItemInventario;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JPopupMenu.Separator jSeparator3;
