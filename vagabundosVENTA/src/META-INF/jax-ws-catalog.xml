@@ -14,4 +14,16 @@
     <system systemId="http://localhost:8080/vagabundosWS/TiendaWS?xsd=1" uri="wsdl/localhost_8080/vagabundosWS/TiendaWS.xsd_1.xsd"/>
     <system systemId="http://localhost:8080/vagabundosWS/BalanceTiendaWS?WSDL" uri="wsdl/localhost_8080/vagabundosWS/BalanceTiendaWS.wsdl"/>
     <system systemId="http://localhost:8080/vagabundosWS/BalanceTiendaWS?xsd=1" uri="wsdl/localhost_8080/vagabundosWS/BalanceTiendaWS.xsd_1.xsd"/>
+    <system systemId="http://209.145.53.75:8080/vagabundosWS/ProductoVendidoWS?wsdl" uri="wsdl/209.145.53.75_8080/vagabundosWS/ProductoVendidoWS.wsdl"/>
+    <system systemId="http://209.145.53.75:8080/vagabundosWS/ProductoVendidoWS?xsd=1" uri="wsdl/209.145.53.75_8080/vagabundosWS/ProductoVendidoWS.xsd_1.xsd"/>
+    <system systemId="http://209.145.53.75:8080/vagabundosWS/WSBalanceEmpleado?wsdl" uri="wsdl/209.145.53.75_8080/vagabundosWS/WSBalanceEmpleado.wsdl"/>
+    <system systemId="http://209.145.53.75:8080/vagabundosWS/WSBalanceEmpleado?xsd=1" uri="wsdl/209.145.53.75_8080/vagabundosWS/WSBalanceEmpleado.xsd_1.xsd"/>
+    <system systemId="http://209.145.53.75:8080/vagabundosWS/ProductoWS?wsdl" uri="wsdl/209.145.53.75_8080/vagabundosWS/ProductoWS.wsdl"/>
+    <system systemId="http://209.145.53.75:8080/vagabundosWS/ProductoWS?xsd=1" uri="wsdl/209.145.53.75_8080/vagabundosWS/ProductoWS.xsd_1.xsd"/>
+    <system systemId="http://209.145.53.75:8080/vagabundosWS/EmpleadoWS?wsdl" uri="wsdl/209.145.53.75_8080/vagabundosWS/EmpleadoWS.wsdl"/>
+    <system systemId="http://209.145.53.75:8080/vagabundosWS/EmpleadoWS?xsd=1" uri="wsdl/209.145.53.75_8080/vagabundosWS/EmpleadoWS.xsd_1.xsd"/>
+    <system systemId="http://209.145.53.75:8080/vagabundosWS/BalanceTiendaWS?wsdl" uri="wsdl/209.145.53.75_8080/vagabundosWS/BalanceTiendaWS.wsdl"/>
+    <system systemId="http://209.145.53.75:8080/vagabundosWS/BalanceTiendaWS?xsd=1" uri="wsdl/209.145.53.75_8080/vagabundosWS/BalanceTiendaWS.xsd_1.xsd"/>
+    <system systemId="http://209.145.53.75:8080/vagabundosWS/TicketWS?wsdl" uri="wsdl/209.145.53.75_8080/vagabundosWS/TicketWS.wsdl"/>
+    <system systemId="http://209.145.53.75:8080/vagabundosWS/TicketWS?xsd=1" uri="wsdl/209.145.53.75_8080/vagabundosWS/TicketWS.xsd_1.xsd"/>
 </catalog>
