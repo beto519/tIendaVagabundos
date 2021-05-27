@@ -13,6 +13,7 @@ import javax.swing.JOptionPane;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.view.JasperViewer;
+import configuracion.DBHelper;
 
 
 /**
@@ -414,17 +415,18 @@ public class Principal extends javax.swing.JFrame {
 
     private void jMenuItemInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemInventarioActionPerformed
        
-        
+        DBHelper bd = new DBHelper();
         try {
            
+            if (bd.connect()) {
 
                 File reporte = new File("src/reportes/Inventario.jasper");
                
 
-                JasperPrint print = JasperFillManager.fillReport(reporte.getPath(),null);
+                JasperPrint print = JasperFillManager.fillReport(reporte.getPath(),null,bd.getConnection());
                 JasperViewer viewer = new JasperViewer(print, false);
                 viewer.setVisible(true);
-            
+            }
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
