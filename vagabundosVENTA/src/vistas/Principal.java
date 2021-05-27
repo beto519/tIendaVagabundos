@@ -63,6 +63,7 @@ public class Principal extends javax.swing.JFrame {
         jSeparator4 = new javax.swing.JPopupMenu.Separator();
         jMenu8 = new javax.swing.JMenu();
         jMenuItemInventario = new javax.swing.JMenuItem();
+        jMenuItem7 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenu9 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
@@ -172,6 +173,7 @@ public class Principal extends javax.swing.JFrame {
         jMenu8.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jMenu8.setFont(new java.awt.Font("Lucida Calligraphy", 1, 18)); // NOI18N
 
+        jMenuItemInventario.setFont(new java.awt.Font("Lucida Calligraphy", 1, 12)); // NOI18N
         jMenuItemInventario.setText("Inventario");
         jMenuItemInventario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -179,6 +181,9 @@ public class Principal extends javax.swing.JFrame {
             }
         });
         jMenu8.add(jMenuItemInventario);
+
+        jMenuItem7.setText("jMenuItem7");
+        jMenu8.add(jMenuItem7);
 
         jMenuBar1.add(jMenu8);
 
@@ -425,6 +430,8 @@ public class Principal extends javax.swing.JFrame {
 
                 JasperPrint print = JasperFillManager.fillReport(reporte.getPath(),null,bd.getConnection());
                 JasperViewer viewer = new JasperViewer(print, false);
+                
+                viewer.setName("INVENTARIO");
                 viewer.setVisible(true);
             }
 
@@ -491,6 +498,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItemEditarEmpleado;
     private javax.swing.JMenuItem jMenuItemInventario;
     private javax.swing.JPopupMenu.Separator jSeparator1;
