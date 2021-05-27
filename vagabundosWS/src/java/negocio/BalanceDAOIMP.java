@@ -85,7 +85,7 @@ public class BalanceDAOIMP implements CRUD<BalanceEmpleado> {
 
             if (bd.connect()) {
 
-                String query = "SELECT * FROM balance WHERE (`idEmpleado`) ="+id+ " AND (`fecha`) ='" + fecha + "'";
+                String query = "SELECT * FROM balance WHERE (`idEmpleado`) ="+id+" AND (`fecha`) ='"+fecha+"'";
                 ResultSet rs = (ResultSet) bd.execute(query, false);
 
                 if (rs.next()) {
