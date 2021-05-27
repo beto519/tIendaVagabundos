@@ -155,7 +155,7 @@ public class Principal extends javax.swing.JFrame {
         jMenu2.add(jSeparator3);
 
         btnInventario.setFont(new java.awt.Font("Lucida Calligraphy", 1, 12)); // NOI18N
-        btnInventario.setText("Inventario");
+        btnInventario.setText("Codigo Producto");
         btnInventario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnInventarioActionPerformed(evt);
