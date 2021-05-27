@@ -64,7 +64,6 @@ public class Principal extends javax.swing.JFrame {
         jMenu8 = new javax.swing.JMenu();
         jMenuItemInventario = new javax.swing.JMenuItem();
         jMenuItemInventario1 = new javax.swing.JMenuItem();
-        jMenu3 = new javax.swing.JMenu();
         jMenu9 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
         jSeparator5 = new javax.swing.JPopupMenu.Separator();
@@ -192,13 +191,6 @@ public class Principal extends javax.swing.JFrame {
         jMenu8.add(jMenuItemInventario1);
 
         jMenuBar1.add(jMenu8);
-
-        jMenu3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icono2/icons8_money_30px_1.png"))); // NOI18N
-        jMenu3.setText("Cajero   ");
-        jMenu3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jMenu3.setFont(new java.awt.Font("Lucida Calligraphy", 1, 18)); // NOI18N
-        jMenuBar1.add(jMenu3);
 
         jMenu9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jMenu9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icono2/icons8_user_30px.png"))); // NOI18N
@@ -519,7 +511,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JDesktopPane contenido;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenu jMenu6;
