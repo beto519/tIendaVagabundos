@@ -16,6 +16,9 @@
     <service name="UsuarioWS">
       <implementation-class>WSUsuario.UsuarioWS</implementation-class>
     </service>
+    <service name="WSBalanceEmpleado">
+      <implementation-class>WSBalanceEmpleado.WSBalanceEmpleado</implementation-class>
+    </service>
   </services>
   <clients/>
 </jax-ws>
