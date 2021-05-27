@@ -6,6 +6,7 @@
 package vistas;
 
 import ProductoWS.BuscarPorCodigo;
+
 import WSBalanceEmpleado.BalanceEmpleado;
 import entidades.Producto;
 import entidades.img;
@@ -517,6 +518,9 @@ public class RealizarVenta extends javax.swing.JInternalFrame implements Runnabl
                             editar(Principal.idEmpleado, efectivoEntrada, retiro, fechaFormato());
 
                         }
+                        
+                     
+                        
                         llenarTabla();
 
                     } else {
@@ -611,5 +615,11 @@ public class RealizarVenta extends javax.swing.JInternalFrame implements Runnabl
         WSBalanceEmpleado.WSBalanceEmpleado port = service.getWSBalanceEmpleadoPort();
         return port.editar(idEmpleado, efectivoEntrada, retiro, fecha);
     }
+
+  
+   
+
+    
+   
 
 }

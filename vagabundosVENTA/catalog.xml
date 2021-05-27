@@ -10,4 +10,6 @@
     <system systemId="http://localhost:8080/vagabundosWS/TicketWS?xsd=1" uri="xml-resources/web-service-references/TicketWS/wsdl/localhost_8080/vagabundosWS/TicketWS.xsd_1.xsd"/>
     <system systemId="http://localhost:8080/vagabundosWS/WSBalanceEmpleado?WSDL" uri="xml-resources/web-service-references/WSBalanceEmpleado/wsdl/localhost_8080/vagabundosWS/WSBalanceEmpleado.wsdl"/>
     <system systemId="http://localhost:8080/vagabundosWS/WSBalanceEmpleado?xsd=1" uri="xml-resources/web-service-references/WSBalanceEmpleado/wsdl/localhost_8080/vagabundosWS/WSBalanceEmpleado.xsd_1.xsd"/>
+    <system systemId="http://localhost:8080/vagabundosWS/TiendaWS?WSDL" uri="xml-resources/web-service-references/TiendaWS/wsdl/localhost_8080/vagabundosWS/TiendaWS.wsdl"/>
+    <system systemId="http://localhost:8080/vagabundosWS/TiendaWS?xsd=1" uri="xml-resources/web-service-references/TiendaWS/wsdl/localhost_8080/vagabundosWS/TiendaWS.xsd_1.xsd"/>
 </catalog>

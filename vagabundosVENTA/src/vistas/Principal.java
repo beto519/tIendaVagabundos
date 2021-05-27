@@ -26,6 +26,7 @@ public class Principal extends javax.swing.JFrame {
      */
     public static long codigoEmpleado;
     public static int idEmpleado;
+    DBHelper bd = new DBHelper();
 
     public Principal() {
         initComponents();
@@ -425,7 +426,6 @@ public class Principal extends javax.swing.JFrame {
 
     private void jMenuItemInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemInventarioActionPerformed
 
-        DBHelper bd = new DBHelper();
         try {
 
             if (bd.connect()) {
@@ -453,7 +453,15 @@ public class Principal extends javax.swing.JFrame {
             long codigoA = autorizacion(codigo);
             if (codigoA > 0) {
 
-                String fecha = String.valueOf(JOptionPane.showInputDialog("Ingrese la fecha, 2021-05-26" ));
+                String fecha = String.valueOf(JOptionPane.showInputDialog("Ingrese la fecha, 2021-05-26"));
+                File reporte = new File("src/reportes/ventaPorCajero.jasper");
+                Map parametros = new HashMap();
+                parametros.put("fecha", fecha);
+                JasperPrint print = JasperFillManager.fillReport(reporte.getPath(), parametros, bd.getConnection());
+                JasperViewer viewer = new JasperViewer(print, false);
+
+                viewer.setName("INVENTARIO");
+                viewer.setVisible(true);
 
             } else {
 
