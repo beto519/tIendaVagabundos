@@ -101,5 +101,22 @@
         <delete dir="${build.generated.dir}/jax-wsCache/WSBalanceEmpleado"/>
         <delete dir="${build.generated.sources.dir}/jax-ws/WSBalanceEmpleado"/>
     </target>
-    <target name="wsimport-client-generate" depends="wsimport-client-EmpleadoWS, wsimport-client-ProductoWS, wsimport-client-ProductoVendidoWS, wsimport-client-TicketWS, wsimport-client-WSBalanceEmpleado"/>
+    <target name="wsimport-client-BalanceTiendaWS" depends="wsimport-init">
+        <mkdir dir="${build.generated.dir}/jax-wsCache/BalanceTiendaWS"/>
+        <property name="wsdl-BalanceTiendaWS" location="xml-resources/web-service-references/BalanceTiendaWS/wsdl/localhost_8080/vagabundosWS/BalanceTiendaWS.wsdl"/>
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/BalanceTiendaWS" destdir="${build.generated.dir}/jax-wsCache/BalanceTiendaWS" wsdl="${wsdl-BalanceTiendaWS}" catalog="catalog.xml" encoding="${source.encoding}" extension="true" verbose="true" fork="false" wsdlLocation="http://localhost:8080/vagabundosWS/BalanceTiendaWS?WSDL" xnocompile="true" xendorsed="true" package="BalanceTiendaWS">
+            <depends file="${wsdl-BalanceTiendaWS}"/>
+            <produces dir="${build.generated.dir}/jax-wsCache/BalanceTiendaWS"/>
+        </wsimport>
+        <copy todir="${build.generated.sources.dir}/jax-ws">
+            <fileset dir="${build.generated.dir}/jax-wsCache/BalanceTiendaWS">
+                <include name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="wsimport-client-clean-BalanceTiendaWS" depends="-init-project">
+        <delete dir="${build.generated.dir}/jax-wsCache/BalanceTiendaWS"/>
+        <delete dir="${build.generated.sources.dir}/jax-ws/BalanceTiendaWS"/>
+    </target>
+    <target name="wsimport-client-generate" depends="wsimport-client-EmpleadoWS, wsimport-client-ProductoWS, wsimport-client-ProductoVendidoWS, wsimport-client-TicketWS, wsimport-client-WSBalanceEmpleado, wsimport-client-BalanceTiendaWS"/>
 </project>

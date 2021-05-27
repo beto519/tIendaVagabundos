@@ -52,6 +52,14 @@ public class BalanceTiendaWS {
     }
     
     
+    @WebMethod (operationName = "buscarFecha")
+    public BalanceTienda buscarFecha(
+    @WebParam(name = "fecha") String fecha
+    ){
+       return dao.buscarPorFecha(fecha);
+    }
+    
+    
     
     
 }

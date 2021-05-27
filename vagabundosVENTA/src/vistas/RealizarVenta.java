@@ -5,6 +5,7 @@
  */
 package vistas;
 
+import BalanceTiendaWS.BalanceTienda;
 import ProductoWS.BuscarPorCodigo;
 
 import WSBalanceEmpleado.BalanceEmpleado;
@@ -519,6 +520,18 @@ public class RealizarVenta extends javax.swing.JInternalFrame implements Runnabl
 
                         }
                         
+                        
+                        BalanceTienda balanceTienda = new BalanceTienda();
+                        
+                        balanceTienda = buscarFecha(fechaFormato());
+                        
+                        if(balanceTienda.getId() == 0){
+                            agregarBalanceTienda(total, fechaFormato());
+                        }else{
+                            
+                            double efectivoBalance = balanceTienda.getTotalEfectivo() + total;
+                            editarBalance(efectivoBalance, fechaFormato());
+                        }
                      
                         
                         txtCodigo.setText("");
@@ -617,6 +630,24 @@ public class RealizarVenta extends javax.swing.JInternalFrame implements Runnabl
         WSBalanceEmpleado.WSBalanceEmpleado_Service service = new WSBalanceEmpleado.WSBalanceEmpleado_Service();
         WSBalanceEmpleado.WSBalanceEmpleado port = service.getWSBalanceEmpleadoPort();
         return port.editar(idEmpleado, efectivoEntrada, retiro, fecha);
+    }
+
+    private static BalanceTienda buscarFecha(java.lang.String fecha) {
+        BalanceTiendaWS.BalanceTiendaWS_Service service = new BalanceTiendaWS.BalanceTiendaWS_Service();
+        BalanceTiendaWS.BalanceTiendaWS port = service.getBalanceTiendaWSPort();
+        return port.buscarFecha(fecha);
+    }
+
+    private static boolean agregarBalanceTienda(double totalEfectivo, java.lang.String fecha) {
+        BalanceTiendaWS.BalanceTiendaWS_Service service = new BalanceTiendaWS.BalanceTiendaWS_Service();
+        BalanceTiendaWS.BalanceTiendaWS port = service.getBalanceTiendaWSPort();
+        return port.agregarBalanceTienda(totalEfectivo, fecha);
+    }
+
+    private static Boolean editarBalance(double totalEfectivo, java.lang.String fecha) {
+        BalanceTiendaWS.BalanceTiendaWS_Service service = new BalanceTiendaWS.BalanceTiendaWS_Service();
+        BalanceTiendaWS.BalanceTiendaWS port = service.getBalanceTiendaWSPort();
+        return port.editar(totalEfectivo, fecha);
     }
 
   

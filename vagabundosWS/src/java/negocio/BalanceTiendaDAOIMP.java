@@ -7,6 +7,7 @@ package negocio;
 
 import configuracion.DBHelper;
 import entidades.BalanceTienda;
+import java.sql.ResultSet;
 import java.util.List;
 
 /**
@@ -83,6 +84,41 @@ public class BalanceTiendaDAOIMP implements CRUD<BalanceTienda> {
     @Override
     public List<BalanceTienda> buscarNombre(String nombre) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    
+    public BalanceTienda buscarPorFecha(String fecha){
+        
+        BalanceTienda tienda = new BalanceTienda();
+        
+        try {
+            if (bd.connect()) {
+            
+                String query = "SELECT * FROM balanceTienda WHERE fecha = '"+fecha+"'";
+                
+                ResultSet rs =(ResultSet) bd.execute(query, false);
+                
+                if(rs.next()){
+                    tienda.setFecha(rs.getString("fecha"));
+                    tienda.setId(rs.getInt("idBalanceTienda"));
+                    tienda.setTotalEfectivo(rs.getDouble("totalEfectivo"));
+                }
+                
+                
+                
+            }
+            
+            
+            
+            
+            
+        } catch (Exception e) {
+        }finally{
+            bd.disconnect();
+        }
+        
+        return tienda;
+        
     }
     
     

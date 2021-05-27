@@ -12,4 +12,6 @@
     <system systemId="http://localhost:8080/vagabundosWS/WSBalanceEmpleado?xsd=1" uri="wsdl/localhost_8080/vagabundosWS/WSBalanceEmpleado.xsd_1.xsd"/>
     <system systemId="http://localhost:8080/vagabundosWS/TiendaWS?WSDL" uri="wsdl/localhost_8080/vagabundosWS/TiendaWS.wsdl"/>
     <system systemId="http://localhost:8080/vagabundosWS/TiendaWS?xsd=1" uri="wsdl/localhost_8080/vagabundosWS/TiendaWS.xsd_1.xsd"/>
+    <system systemId="http://localhost:8080/vagabundosWS/BalanceTiendaWS?WSDL" uri="wsdl/localhost_8080/vagabundosWS/BalanceTiendaWS.wsdl"/>
+    <system systemId="http://localhost:8080/vagabundosWS/BalanceTiendaWS?xsd=1" uri="wsdl/localhost_8080/vagabundosWS/BalanceTiendaWS.xsd_1.xsd"/>
 </catalog>
