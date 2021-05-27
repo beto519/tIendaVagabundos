@@ -6,6 +6,7 @@
 package vistas;
 
 import ProductoWS.BuscarPorCodigo;
+import WSBalanceEmpleado.BalanceEmpleado;
 import entidades.Producto;
 import entidades.img;
 import java.awt.Cursor;
@@ -43,7 +44,7 @@ public class RealizarVenta extends javax.swing.JInternalFrame implements Runnabl
      */
     public RealizarVenta() {
         initComponents();
-        transaccion.setText(generarIDTicket()+"");
+        transaccion.setText(generarIDTicket() + "");
         codigoEmpleado.setText(Principal.codigoEmpleado + "");
         hilo = new Thread(this);
         hilo.start();
@@ -58,13 +59,21 @@ public class RealizarVenta extends javax.swing.JInternalFrame implements Runnabl
         tablaProductos.getColumnModel().getColumn(2).setCellRenderer(modelocentrar);   //Izquierda public void izq_datos(int col){  DefaultTableCellRenderer modelocentrar = new DefaultTableCellRenderer(); modelocentrar.setHorizontalAlignment(SwingConstants.LEFT); table.getColumnModel().getColumn(col).setCellRenderer(modelocentrar);  } //Derecha public void der_datos(int col){  DefaultTableCellRenderer modelocentrar = new DefaultTableCellRenderer(); modelocentrar.setHorizontalAlignment(SwingConstants.RIGHT); table.getColumnModel().getColumn(col).setCellRenderer(modelocentrar);  }  //Derecha public void der_datos2(int col){
         lblTotal.setVisible(false);
         mostrarCambio.setVisible(false);
-       
+
     }
 
     //metodo para obtener la fecha actual
     public Date fecha() {
         Date fecha = new Date();
         return fecha;
+    }
+
+    public String fechaFormato() {
+        Date fecha = new Date();
+
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
+        return formatter.format(fecha);
+        //return "2021/05/27";
     }
 
     public void hora() {
@@ -80,7 +89,7 @@ public class RealizarVenta extends javax.swing.JInternalFrame implements Runnabl
     public int generarIDTicket() {
 
         List<Ticket> tickets = buscarTodos();
-        int idticket = tickets.size()+1;
+        int idticket = tickets.size() + 1;
         return idticket;
 
     }
@@ -477,8 +486,8 @@ public class RealizarVenta extends javax.swing.JInternalFrame implements Runnabl
                 int idTicket = generarIDTicket();
                 for (int i = 0; i < productos.size(); i++) {
                     int idProducto = productos.get(i).getIdProducto();
-                     System.out.println(idProducto);
-                     resultado = agregarProductoVendido(idProducto, idTicket);
+                    System.out.println(idProducto);
+                    resultado = agregarProductoVendido(idProducto, idTicket);
 
                 }
 
@@ -492,12 +501,23 @@ public class RealizarVenta extends javax.swing.JInternalFrame implements Runnabl
                         mostrarCambio.setVisible(true);
 
                         productos = new ArrayList();
-                        total = 0.0;
-                        transaccion.setText(generarIDTicket()+"");
+                        transaccion.setText(generarIDTicket() + "");
+
+                        BalanceEmpleado balance = new BalanceEmpleado();
+                        balance = buscarIDFecha(Principal.idEmpleado, fechaFormato());
+
+                        if (balance.getIdBalance() == 0) {
+                            System.out.println(total);
+                            agregarBalance(Principal.idEmpleado, total, 0, fechaFormato());
+
+                        } else {
+                            double efectivoEntrada = balance.getEfectivoEntrada() + total;
+                            double retiro = balance.getRetiro();
+
+                            editar(Principal.idEmpleado, efectivoEntrada, retiro, fechaFormato());
+
+                        }
                         llenarTabla();
-                        
-                        
-                        
 
                     } else {
                         JOptionPane.showMessageDialog(null, "Ocurrio un error", "Error", JOptionPane.ERROR_MESSAGE);
@@ -572,6 +592,24 @@ public class RealizarVenta extends javax.swing.JInternalFrame implements Runnabl
         wsticket.TicketWS_Service service = new wsticket.TicketWS_Service();
         wsticket.TicketWS port = service.getTicketWSPort();
         return port.agregarTicket(fecha, idEmpleado, total);
+    }
+
+    private static BalanceEmpleado buscarIDFecha(int idEmpleado, java.lang.String fecha) {
+        WSBalanceEmpleado.WSBalanceEmpleado_Service service = new WSBalanceEmpleado.WSBalanceEmpleado_Service();
+        WSBalanceEmpleado.WSBalanceEmpleado port = service.getWSBalanceEmpleadoPort();
+        return port.buscarIDFecha(idEmpleado, fecha);
+    }
+
+    private static boolean agregarBalance(int idEmpleado, double efectivoEntrada, double retiro, java.lang.String fecha) {
+        WSBalanceEmpleado.WSBalanceEmpleado_Service service = new WSBalanceEmpleado.WSBalanceEmpleado_Service();
+        WSBalanceEmpleado.WSBalanceEmpleado port = service.getWSBalanceEmpleadoPort();
+        return port.agregarBalance(idEmpleado, efectivoEntrada, retiro, fecha);
+    }
+
+    private static boolean editar(int idEmpleado, double efectivoEntrada, double retiro, java.lang.String fecha) {
+        WSBalanceEmpleado.WSBalanceEmpleado_Service service = new WSBalanceEmpleado.WSBalanceEmpleado_Service();
+        WSBalanceEmpleado.WSBalanceEmpleado port = service.getWSBalanceEmpleadoPort();
+        return port.editar(idEmpleado, efectivoEntrada, retiro, fecha);
     }
 
 }

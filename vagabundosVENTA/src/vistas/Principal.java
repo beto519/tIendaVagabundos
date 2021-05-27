@@ -15,7 +15,6 @@ import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.view.JasperViewer;
 import configuracion.DBHelper;
 
-
 /**
  *
  * @author Carlos Soto Pacheco
@@ -63,7 +62,7 @@ public class Principal extends javax.swing.JFrame {
         jSeparator4 = new javax.swing.JPopupMenu.Separator();
         jMenu8 = new javax.swing.JMenu();
         jMenuItemInventario = new javax.swing.JMenuItem();
-        jMenuItem7 = new javax.swing.JMenuItem();
+        jMenuItemInventario1 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenu9 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
@@ -182,8 +181,14 @@ public class Principal extends javax.swing.JFrame {
         });
         jMenu8.add(jMenuItemInventario);
 
-        jMenuItem7.setText("jMenuItem7");
-        jMenu8.add(jMenuItem7);
+        jMenuItemInventario1.setFont(new java.awt.Font("Lucida Calligraphy", 1, 12)); // NOI18N
+        jMenuItemInventario1.setText("Ventas por cajero");
+        jMenuItemInventario1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemInventario1ActionPerformed(evt);
+            }
+        });
+        jMenu8.add(jMenuItemInventario1);
 
         jMenuBar1.add(jMenu8);
 
@@ -419,27 +424,48 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void jMenuItemInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemInventarioActionPerformed
-       
+
         DBHelper bd = new DBHelper();
         try {
-           
+
             if (bd.connect()) {
 
                 File reporte = new File("src/reportes/Inventario.jasper");
-               
 
-                JasperPrint print = JasperFillManager.fillReport(reporte.getPath(),null,bd.getConnection());
+                JasperPrint print = JasperFillManager.fillReport(reporte.getPath(), null, bd.getConnection());
                 JasperViewer viewer = new JasperViewer(print, false);
-                
+
                 viewer.setName("INVENTARIO");
                 viewer.setVisible(true);
             }
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
-        } 
-        
+        }
+
     }//GEN-LAST:event_jMenuItemInventarioActionPerformed
+
+    private void jMenuItemInventario1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemInventario1ActionPerformed
+        try {
+
+            long codigo = Long.valueOf(JOptionPane.showInputDialog("Ingrese codigo de autorización"));
+
+            long codigoA = autorizacion(codigo);
+            if (codigoA > 0) {
+
+                String fecha = String.valueOf(JOptionPane.showInputDialog("Ingrese la fecha, 2021-05-26" ));
+
+            } else {
+
+                JOptionPane.showMessageDialog(null, "codigo no valido",
+                        "Hey!", JOptionPane.ERROR_MESSAGE);
+            }
+
+        } catch (Exception e) {
+        }
+
+
+    }//GEN-LAST:event_jMenuItemInventario1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -498,9 +524,9 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
-    private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItemEditarEmpleado;
     private javax.swing.JMenuItem jMenuItemInventario;
+    private javax.swing.JMenuItem jMenuItemInventario1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JPopupMenu.Separator jSeparator3;
