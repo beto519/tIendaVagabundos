@@ -421,7 +421,7 @@ public class Principal extends javax.swing.JFrame {
                 File reporte = new File("src/reportes/Inventario.jasper");
                
 
-                JasperPrint print = JasperFillManager.fillReport(reporte.getPath());
+                JasperPrint print = JasperFillManager.fillReport(reporte.getPath(),null);
                 JasperViewer viewer = new JasperViewer(print, false);
                 viewer.setVisible(true);
             
