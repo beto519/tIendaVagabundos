@@ -19,6 +19,9 @@
     <service name="EmpleadoWS">
       <implementation-class>WSEmpleado.EmpleadoWS</implementation-class>
     </service>
+    <service name="BalanceTiendaWS">
+      <implementation-class>WSBalanceTienda.BalanceTiendaWS</implementation-class>
+    </service>
   </services>
   <clients/>
 </jax-ws>
