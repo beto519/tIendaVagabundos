@@ -521,7 +521,10 @@ public class RealizarVenta extends javax.swing.JInternalFrame implements Runnabl
                         
                      
                         
+                        txtCodigo.setText("");
+                        txtPago.setText("");
                         llenarTabla();
+                        
 
                     } else {
                         JOptionPane.showMessageDialog(null, "Ocurrio un error", "Error", JOptionPane.ERROR_MESSAGE);

@@ -454,13 +454,14 @@ public class Principal extends javax.swing.JFrame {
             if (codigoA > 0) {
 
                 String fecha = String.valueOf(JOptionPane.showInputDialog("Ingrese la fecha, 2021-05-26"));
+                bd.connect();
                 File reporte = new File("src/reportes/ventaPorCajero.jasper");
                 Map parametros = new HashMap();
                 parametros.put("fecha", fecha);
                 JasperPrint print = JasperFillManager.fillReport(reporte.getPath(), parametros, bd.getConnection());
-                JasperViewer viewer = new JasperViewer(print, false);
+                JasperViewer viewer = new JasperViewer(print, true);
 
-                viewer.setName("INVENTARIO");
+                viewer.setName("ventas por cajero");
                 viewer.setVisible(true);
 
             } else {
@@ -470,6 +471,8 @@ public class Principal extends javax.swing.JFrame {
             }
 
         } catch (Exception e) {
+        }finally{
+            bd.disconnect();
         }
 
 

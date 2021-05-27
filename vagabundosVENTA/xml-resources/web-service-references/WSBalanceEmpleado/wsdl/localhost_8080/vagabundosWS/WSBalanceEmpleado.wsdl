@@ -10,11 +10,11 @@
 <message name="editarResponse">
 <part name="parameters" element="tns:editarResponse"/>
 </message>
-<message name="agregarBalance">
-<part name="parameters" element="tns:agregarBalance"/>
+<message name="hello">
+<part name="parameters" element="tns:hello"/>
 </message>
-<message name="agregarBalanceResponse">
-<part name="parameters" element="tns:agregarBalanceResponse"/>
+<message name="helloResponse">
+<part name="parameters" element="tns:helloResponse"/>
 </message>
 <message name="buscarIDFecha">
 <part name="parameters" element="tns:buscarIDFecha"/>
@@ -22,28 +22,28 @@
 <message name="buscarIDFechaResponse">
 <part name="parameters" element="tns:buscarIDFechaResponse"/>
 </message>
-<message name="hello">
-<part name="parameters" element="tns:hello"/>
+<message name="agregarBalance">
+<part name="parameters" element="tns:agregarBalance"/>
 </message>
-<message name="helloResponse">
-<part name="parameters" element="tns:helloResponse"/>
+<message name="agregarBalanceResponse">
+<part name="parameters" element="tns:agregarBalanceResponse"/>
 </message>
 <portType name="WSBalanceEmpleado">
 <operation name="editar">
 <input wsam:Action="http://WSBalanceEmpleado/WSBalanceEmpleado/editarRequest" message="tns:editar"/>
 <output wsam:Action="http://WSBalanceEmpleado/WSBalanceEmpleado/editarResponse" message="tns:editarResponse"/>
 </operation>
-<operation name="agregarBalance">
-<input wsam:Action="http://WSBalanceEmpleado/WSBalanceEmpleado/agregarBalanceRequest" message="tns:agregarBalance"/>
-<output wsam:Action="http://WSBalanceEmpleado/WSBalanceEmpleado/agregarBalanceResponse" message="tns:agregarBalanceResponse"/>
+<operation name="hello">
+<input wsam:Action="http://WSBalanceEmpleado/WSBalanceEmpleado/helloRequest" message="tns:hello"/>
+<output wsam:Action="http://WSBalanceEmpleado/WSBalanceEmpleado/helloResponse" message="tns:helloResponse"/>
 </operation>
 <operation name="buscarIDFecha">
 <input wsam:Action="http://WSBalanceEmpleado/WSBalanceEmpleado/buscarIDFechaRequest" message="tns:buscarIDFecha"/>
 <output wsam:Action="http://WSBalanceEmpleado/WSBalanceEmpleado/buscarIDFechaResponse" message="tns:buscarIDFechaResponse"/>
 </operation>
-<operation name="hello">
-<input wsam:Action="http://WSBalanceEmpleado/WSBalanceEmpleado/helloRequest" message="tns:hello"/>
-<output wsam:Action="http://WSBalanceEmpleado/WSBalanceEmpleado/helloResponse" message="tns:helloResponse"/>
+<operation name="agregarBalance">
+<input wsam:Action="http://WSBalanceEmpleado/WSBalanceEmpleado/agregarBalanceRequest" message="tns:agregarBalance"/>
+<output wsam:Action="http://WSBalanceEmpleado/WSBalanceEmpleado/agregarBalanceResponse" message="tns:agregarBalanceResponse"/>
 </operation>
 </portType>
 <binding name="WSBalanceEmpleadoPortBinding" type="tns:WSBalanceEmpleado">
@@ -57,7 +57,7 @@
 <soap:body use="literal"/>
 </output>
 </operation>
-<operation name="agregarBalance">
+<operation name="hello">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -75,7 +75,7 @@
 <soap:body use="literal"/>
 </output>
 </operation>
-<operation name="hello">
+<operation name="agregarBalance">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
